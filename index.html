@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>土耳其旅行手册 · 卡什 × 卡帕多奇亚</title>
+<style>
+:root{
+  --bg:#edf3f5; --card:#ffffff; --ink:#21282e; --muted:#75828b; --line:#d3dde2;
+  --accent:#0e7f78; --tint:rgba(14,127,120,.10); --shadow:0 1px 3px rgba(15,40,55,.08);
+}
+[data-theme=dark]{
+  --bg:#0f171c; --card:#182228; --ink:#e3eaee; --muted:#8b98a2; --line:#2c3a41;
+  --accent:#4ac3b3; --tint:rgba(74,195,179,.14); --shadow:0 1px 3px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.65; padding-bottom:56px;
+  transition:background .4s,color .4s;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 16px;}
+
+/* ---------- 头部 ---------- */
+header{padding:28px 16px 8px; text-align:center;}
+header h1{font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:700; font-size:32px; letter-spacing:2px;}
+header .sub{color:var(--muted); font-size:14px; margin-top:4px;}
+header .tz-note{
+  display:inline-block; margin-top:10px; font-size:12px; color:var(--muted);
+  background:var(--card); border:1px dashed var(--line); border-radius:99px; padding:4px 14px;
+}
+#trClock{font-weight:600; color:var(--accent);}
+
+/* ---------- 卡片通用 ---------- */
+.card{
+  background:var(--card); border:1.5px solid var(--line); box-shadow:var(--shadow);
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  padding:20px 18px; margin:18px 0;
+}
+h2.sec{
+  font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:700;
+  font-size:21px; letter-spacing:1px;
+  margin:34px 0 4px; position:relative; display:inline-block;
+}
+h2.sec::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:7px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='7' viewBox='0 0 120 7'%3E%3Cpath d='M0 4 Q 8 0 16 4 T 32 4 T 48 4 T 64 4 T 80 4 T 96 4 T 112 4 T 120 4' fill='none' stroke='%230e7f78' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x bottom;
+  opacity:.55;
+}
+.sec-sub{color:var(--muted); font-size:13px; margin:6px 0 2px 2px;}
+
+/* ---------- 此刻关注 ---------- */
+#nowCard .next-line{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.daybadge{
+  color:#fff; font-size:12px; font-weight:600; border-radius:99px; padding:2px 10px;
+}
+#nowCard .evt-title{font-size:17px; font-weight:600; margin-top:8px;}
+#nowCard .evt-desc{color:var(--muted); font-size:13px; margin-top:2px;}
+.countdown{
+  font-variant-numeric:tabular-nums; font-weight:700; letter-spacing:1px;
+  font-size:clamp(34px,10vw,52px); margin:10px 0 2px; color:var(--accent);
+  font-family:Consolas,"SF Mono",Menlo,monospace;
+}
+.countdown small{font-size:14px; font-weight:400; color:var(--muted); letter-spacing:0;}
+#nowCard .evt-time-row{font-size:14px; color:var(--muted);}
+.tzchip{
+  font-size:10px; font-weight:600; border:1px solid var(--line); border-radius:6px;
+  padding:0 5px; margin:0 3px; color:var(--muted); vertical-align:1px;
+}
+#nowCard .done-msg{font-size:18px; font-weight:600; color:var(--accent); padding:12px 0;}
+
+/* ---------- 地图 ---------- */
+.mapbox{width:100%; overflow:hidden;}
+.mapbox svg{width:100%; height:auto; display:block;}
+.legend{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; font-size:12px; color:var(--muted); align-items:center;}
+.legend .sw{display:inline-block; width:26px; height:4px; border-radius:2px; vertical-align:middle; margin-right:4px;}
+.legend .sw.air{border-top:2.5px dashed currentColor; height:0; background:none;}
+
+/* ---------- 机票/酒店 ---------- */
+.fh-grid{display:grid; grid-template-columns:1fr; gap:12px;}
+@media(min-width:640px){.fh-grid{grid-template-columns:1fr 1fr;}}
+.fh-card{background:var(--card); border:1.5px solid var(--line); border-radius:12px 14px 10px 16px; padding:14px 14px 12px;}
+.fh-card h3{font-size:15px; margin-bottom:2px;}
+.fh-card .meta{color:var(--muted); font-size:12px;}
+.fh-card .meta a{color:var(--accent); text-decoration:none;}
+.fh-card .big{font-size:20px; font-weight:700; margin-top:8px; font-variant-numeric:tabular-nums;}
+.fh-card .route{font-size:13px; color:var(--muted); margin-top:2px;}
+.fh-card .policies{font-size:12px; color:var(--muted); margin-top:6px;}
+
+/* ---------- 逐日行程 ---------- */
+.day{margin:26px 0;}
+.day-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-bottom:2px dashed var(--line); padding-bottom:8px;}
+.day-head .dnum{font-weight:800; font-size:15px; color:#fff; border-radius:8px; padding:1px 9px;}
+.day-head .ddate{font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:600; font-size:19px; letter-spacing:1px;}
+.day-head .dtip{color:var(--muted); font-size:12px;}
+.day-head .stay{margin-left:auto; font-size:12px; color:var(--muted);}
+details.maptog{margin:10px 0 2px;}
+details.maptog summary{
+  cursor:pointer; font-size:13px; color:var(--accent); list-style:none; user-select:none;
+  display:inline-flex; align-items:center; gap:6px;
+}
+details.maptog summary::-webkit-details-marker{display:none;}
+details.maptog summary::before{content:"◂"; transition:transform .15s; display:inline-block;}
+details.maptog[open] summary::before{transform:rotate(-90deg);}
+.stripbox{background:var(--bg); border:1.5px dashed var(--line); border-radius:10px; margin-top:8px; padding:6px 4px 2px;}
+.stripbox svg{width:100%; height:auto; display:block;}
+.navbtns{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+a.navbtn{
+  font-size:13px; color:var(--accent); text-decoration:none; background:var(--tint);
+  border:1px solid var(--accent); border-radius:99px; padding:4px 12px; display:inline-block;
+}
+a.navbtn:active{transform:scale(.97);}
+.tl{display:grid; grid-template-columns:64px 1fr; row-gap:0; margin-top:12px;}
+.tl .t{
+  font-variant-numeric:tabular-nums; font-weight:700; font-size:15px; padding-top:1px;
+}
+.tl .t .amp{color:var(--muted); font-weight:400; font-size:11px;}
+.tl .c{padding-left:10px; border-left:2px solid var(--line); margin-left:4px; padding-bottom:14px;}
+.tl .c h4{font-size:15px; font-weight:600;}
+.tl .c p{font-size:13px; color:var(--muted); margin-top:2px;}
+.tl .row:last-child .c{border-left-color:transparent;}
+a.chip{
+  display:inline-block; font-size:12px; color:var(--accent); text-decoration:none;
+  background:var(--tint); border-radius:8px; padding:1px 8px; margin:4px 6px 0 0;
+}
+a.chip::before{content:"📍 ";}
+
+/* ---------- 待办 / 贴士 ---------- */
+ol.todos{list-style:none; counter-reset:td; margin-top:8px;}
+ol.todos li{
+  counter-increment:td; position:relative; padding:9px 10px 9px 44px;
+  border-bottom:1px dashed var(--line); font-size:14px;
+}
+ol.todos li::before{
+  content:counter(td); position:absolute; left:4px; top:9px; width:26px; height:26px;
+  border:1.5px solid var(--accent); color:var(--accent); border-radius:50%;
+  text-align:center; line-height:24px; font-size:13px; font-weight:700;
+}
+ol.todos li .td-day{color:var(--muted); font-size:12px; font-weight:600;}
+ul.tips{margin:8px 0 0 2px; list-style:none;}
+ul.tips li{padding:7px 0 7px 24px; position:relative; font-size:14px; border-bottom:1px dashed var(--line);}
+ul.tips li::before{content:"✧"; position:absolute; left:2px; color:var(--accent);}
+ul.tips li b{color:var(--accent); font-weight:600;}
+
+footer{color:var(--muted); font-size:12px; text-align:center; margin-top:40px;}
+footer a{color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>土耳其旅行手册</h1>
+  <div class="sub">卡什 × 卡帕多奇亚 · 2026.10.08 – 10.15 · 单人 · 8 天</div>
+  <div class="tz-note">🕐 土耳其现在 <span id="trClock">--:--</span>（UTC+3，比北京晚 5 小时）</div>
+</header>
+
+<section id="nowCard" class="card">
+  <div class="next-line"><span class="daybadge" id="nbDay">—</span><span id="nbDate" style="font-size:14px;color:var(--muted)"></span></div>
+  <div class="evt-title" id="nbTitle">—</div>
+  <div class="evt-desc" id="nbDesc"></div>
+  <div class="countdown" id="nbCount">--天 --:--:--</div>
+  <div class="evt-time-row" id="nbTimes"></div>
+  <div id="nbLoc"></div>
+</section>
+
+<section>
+  <h2 class="sec">行程总览</h2>
+  <div class="sec-sub">手绘示意图 · 按天配色 · 每晚住宿已标注</div>
+  <div class="card mapbox" id="bigMap"></div>
+  <div class="legend" id="mapLegend"></div>
+</section>
+
+<section>
+  <h2 class="sec">已确认的机票与酒店</h2>
+  <div class="sec-sub">均为当地时间 · 不含任何预订号</div>
+  <div class="fh-grid" id="fhGrid"></div>
+</section>
+
+<section>
+  <h2 class="sec">逐日行程</h2>
+  <div class="sec-sub">点击地点直接唤起 Google 地图导航 · 每天上部可展开当日路线</div>
+  <div id="days"></div>
+
+  <h2 class="sec">收藏地点速查</h2>
+  <div class="sec-sub">24 处收藏全部在此 · 点击直接导航</div>
+  <div id="speedList"></div>
+</section>
+
+<section>
+  <h2 class="sec">待办清单</h2>
+  <div class="sec-sub">按时间排序 · 办完一项请告知，由我来更新此页</div>
+  <div class="card">
+  <ol class="todos">
+    <li><span class="td-day">出发前</span> 办土耳其电子签（官网 evisa.gov.tr，打印或存手机随身带）</li>
+    <li><span class="td-day">出发前</span> 买好 eSIM 或开通漫游，保存激活说明</li>
+    <li><span class="td-day">出发前</span> 备少量里拉现金（部分小店和巴士只收现金）+ Visa/Master 卡</li>
+    <li><span class="td-day">出发前</span> 下载 Google 离线地图：卡什、卡帕多奇亚（山谷里常没信号）</li>
+    <li><span class="td-day">出发前</span> 告知帕亚姆酒店 10/8 约 22:00 后入住（☎ <a href="tel:+902428361566">+90 242 836 15 66</a> 或通过预订平台留言）</li>
+    <li><span class="td-day">出发前</span> 订内夫谢希尔机场 ↔ 格雷梅接驳（10/12 去程 15:10 落地后、10/14 19:00 回程；月亮酒店可代订）</li>
+    <li><span class="td-day">10/8 值机</span> 确认行李直挂到达拉曼</li>
+    <li><span class="td-day">10/9</span> 去卡什车站问清 10/12 早班车时刻 ⚠️ 若只有 6:00 班、车程 2.5–3 小时，对 10:20 航班偏紧——问不到更早班次就当晚预约出租车/拼车</li>
+    <li><span class="td-day">10/11 晚</span> 结清帕亚姆酒店账目（次日凌晨出发）</li>
+    <li><span class="td-day">10/12–13</span> 通过 LLT TOURISM 或酒店前台订 10/13 老爷车日落行程</li>
+    <li><span class="td-day">10/14 值机</span> 确认行李直挂上海</li>
+    <li><span class="td-day">10/14 晚</span> 22:35 落地伊斯坦布尔后直接过边检进国际区，01:35 前回到登机口附近</li>
+  </ol>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">实用贴士</h2>
+  <div class="card">
+  <ul class="tips">
+    <li><b>天气与穿着</b>：10 月中旬卡什白天 23–27°C、夜间 15–18°C，海水约 23°C 可下水；卡帕多奇亚昼夜温差大、早晚 8–12°C，老爷车追日落风大，带一件防风外套。全程防晒。</li>
+    <li><b>10/8 转机</b>：伊斯坦布尔转机只有 80 分钟，下机勿停留，跟「国际转机」指示过转机安检；同一票号行李通常直挂，分段出票则需自取再托运。</li>
+    <li><b>达拉曼 → 卡什小巴</b>：出航站楼下楼梯即有一排前往卡什的售票窗口，现场买票（约 1000 里拉/人，2.5–3 小时，家乐福附近下车）。若某家窗口没车，问隔壁窗口；晚班车视当天人流量。</li>
+    <li><b>古剧场日落</b>：提前 30–40 分钟到，往台阶高处坐，西面就是海。三个傍晚都安排了，天气不好就顺延。</li>
+    <li><b>免税店</b>：伊斯坦布尔机场国际区免税店基本通宵营业，10/14 晚 23:00–00:45 是购物窗口。土耳其软糖、茶、彩陶、蓝眼小物是常见伴手礼。</li>
+    <li><b>支付</b>：Visa/Master 通用；ATM 取现方便，选「拒绝转换」走发卡行汇率更划算。</li>
+    <li><b>语言</b>：旅游区英文够用，学两句：Merhaba（你好）、Teşekkürler（谢谢）。</li>
+    <li><b>文件安全</b>：护照 + 电子签打印件随身；酒店订单、接驳确认邮件截图存到手机离线相册。</li>
+    <li><b>打车</b>：卡什、格雷梅镇内基本步行可达；去城堡可让酒店叫车或打表出租车，上车前确认价格。</li>
+  </ul>
+  </div>
+</section>
+
+<footer>
+  <div>本页为公开页面，未包含任何预订号、证件号等敏感信息</div>
+  <div>所有时间：土耳其 UTC+3（全年无夏令时）· 航班按起降机场各自当地时间显示</div>
+</footer>
+
+</div>
+
+<script>
+"use strict";
+/* ================= 数据 ================= */
+var DAYC=['#d95d66','#e8964b','#d9b23a','#7fa65a','#5b8fc7','#8a6fc9','#c26a9a','#5aa7a0'];
+
+/* 收藏地点坐标（来自你的谷歌地图收藏列表） */
+var P={
+ '帕亚姆酒店':[36.1999015,29.636924],
+ '安迪菲勒斯古剧场':[36.2000393,29.6348504],
+ 'İnceboğaz Çınar 海滩':[36.2004505,29.6246905],
+ 'Dondurma Dükkanı':[36.1999215,29.6398382],
+ 'Oburus Momus':[36.1937233,29.5933455],
+ 'Linckia Roastery Cafe':[36.199368,29.6371307],
+ 'Bay Köfte':[36.200614,29.6398175],
+ 'FÜM Smokehouse':[36.1993864,29.6378053],
+ 'Tellina Restaurant':[36.1985652,29.6424749],
+ 'Ege Restaurant Taner Usta':[36.2013782,29.6384859],
+ 'Sushi Kaşhi':[36.1995456,29.6411914],
+ 'Terra decor':[36.2004838,29.6405967],
+ "Lily's Corner":[36.2002182,29.64128],
+ 'GRATİS KAŞ CD':[36.1991022,29.6398658],
+ '三角梅':[36.1992649,29.6372589],
+ '卡帕多奇亚月亮酒店':[38.639896,34.8267134],
+ '乌奇希萨尔城堡':[38.6299062,34.805403],
+ 'Kaira Rooftop':[38.6407181,34.8315223],
+ 'Cappadocia Kebab':[38.6476022,34.8335618],
+ 'Tandır & Restaurant':[38.64524,34.831809],
+ 'Restoran Malaysia':[38.6436651,34.8303864],
+ 'Casaba Cafe':[38.6430639,34.8303441],
+ 'Red Red Wine House':[38.6429946,34.8303485],
+ 'LLT TOURISM':[38.6455718,34.8315639]
+};
+var PTAG={
+ '帕亚姆酒店':'住','安迪菲勒斯古剧场':'日落','İnceboğaz Çınar 海滩':'海滩',
+ 'Dondurma Dükkanı':'冰淇淋','Oburus Momus':'餐厅','Linckia Roastery Cafe':'咖啡',
+ 'Bay Köfte':'餐厅','FÜM Smokehouse':'烤肉','Tellina Restaurant':'餐厅',
+ 'Ege Restaurant Taner Usta':'餐厅','Sushi Kaşhi':'餐厅','Terra decor':'购物',
+ "Lily's Corner":'购物','GRATİS KAŞ CD':'购物','三角梅':'打卡',
+ '卡帕多奇亚月亮酒店':'住','乌奇希萨尔城堡':'景点','Kaira Rooftop':'日落',
+ 'Cappadocia Kebab':'烤肉','Tandır & Restaurant':'餐厅','Restoran Malaysia':'餐厅',
+ 'Casaba Cafe':'咖啡','Red Red Wine House':'酒吧','LLT TOURISM':'旅行社'
+};
+var PLIST=[
+ ['卡什','帕亚姆酒店','安迪菲勒斯古剧场','İnceboğaz Çınar 海滩','Dondurma Dükkanı','Oburus Momus','Linckia Roastery Cafe','Bay Köfte','FÜM Smokehouse','Tellina Restaurant','Ege Restaurant Taner Usta','Sushi Kaşhi','Terra decor',"Lily's Corner",'GRATİS KAŞ CD','三角梅'],
+ ['卡帕多奇亚','卡帕多奇亚月亮酒店','乌奇希萨尔城堡','Kaira Rooftop','Cappadocia Kebab','Tandır & Restaurant','Restoran Malaysia','Casaba Cafe','Red Red Wine House','LLT TOURISM']
+];
+
+/* 其他地点（无收藏坐标，用名称导航） */
+var Q={
+ '上海浦东T2':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('上海浦东国际机场 T2'),
+ '伊斯坦布尔机场':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Istanbul Airport'),
+ '达拉曼机场':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Dalaman Airport'),
+ '内夫谢希尔机场':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Nevşehir Kapadokya Airport'),
+ '卡什家乐福':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('CarrefourSA Kaş'),
+ '卡什车站':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Kaş Otogar'),
+ '卡什小镇':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Kaş, Antalya'),
+ '格雷梅小镇':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Göreme, Nevşehir')
+};
+
+/* 机票（均为当地时间） */
+var FLIGHTS=[
+ {no:'TK281', d:'10月8日 周四', from:'上海浦东 T2', to:'伊斯坦布尔 IST', dep:'07:55', dtz:'北京 UTC+8', arr:'14:50', atz:'土耳其 UTC+3', dur:'约 11 小时'},
+ {no:'TK2562', d:'10月8日 周四', from:'伊斯坦布尔 IST', to:'达拉曼 DLM', dep:'16:10', dtz:'土耳其 UTC+3', arr:'17:30', atz:'土耳其 UTC+3', dur:'1 小时 20 分', warn:'转机仅 80 分钟，下机勿停留'},
+ {no:'TK2555', d:'10月12日 周一', from:'达拉曼 DLM', to:'伊斯坦布尔 IST', dep:'10:20', dtz:'土耳其 UTC+3', arr:'11:22', atz:'土耳其 UTC+3', dur:'1 小时 02 分'},
+ {no:'TK2006', d:'10月12日 周一', from:'伊斯坦布尔 IST', to:'内夫谢希尔 NAV', dep:'13:55', dtz:'土耳其 UTC+3', arr:'15:10', atz:'土耳其 UTC+3', dur:'1 小时 15 分'},
+ {no:'TK2009', d:'10月14日 周三', from:'内夫谢希尔 NAV', to:'伊斯坦布尔 IST', dep:'21:10', dtz:'土耳其 UTC+3', arr:'22:35', atz:'土耳其 UTC+3', dur:'1 小时 25 分'},
+ {no:'TK026', d:'10月15日 周四', from:'伊斯坦布尔 IST', to:'上海浦东 T2', dep:'01:35', dtz:'土耳其 UTC+3', arr:'16:45', atz:'北京 UTC+8', dur:'约 10 小时'}
+];
+
+/* 酒店 */
+var HOTELS=[
+ {name:'帕亚姆酒店', en:'Payam Hotel', nights:'10月8日 – 12日 · 4 晚', addr:'Andifli, Yeni Cami Cd. no:24, 07580 Kaş/Antalya', phone:'+90 242 836 15 66', tel:'+902428361566', ci:'14:00 后', co:'11:00 前', lat:36.1999015, lng:29.636924, note:'距安迪菲勒斯古剧场步行约 4 分钟，距 İnceboğaz Çınar 海滩约 1 公里'},
+ {name:'卡帕多奇亚月亮酒店', en:'Lunar Cappadocia Hotel', nights:'10月12日 – 14日 · 2 晚', addr:'Aydınlı Mah. Görçeli Sk. No:12, 50180 Göreme/Nevşehir', phone:'+90 384 271 23 83', tel:'+903842712383', ci:'14:00 后', co:'12:00 前', lat:38.639896, lng:34.8267134, note:'格雷梅镇内，步行可达各家餐厅'}
+];
+
+/* 逐日行程 */
+/* t:显示时间 tz:TR=土耳其UTC+3 / 北京 hm:倒计时用(24h,可空) d15:日期+1 loc:地点名 */
+var DAYS=[
+ {n:1,date:'10月8日',dow:'周四',title:'飞往土耳其 · 抵达卡什',stay:'夜宿帕亚姆酒店',
+  rows:[
+   {t:'07:55',tz:'北京',hm:'07:55',tz8:1,h:'上海浦东 T2 · TK281 起飞',d:'国际航班请提前 3 小时到机场',loc:'上海浦东T2'},
+   {t:'14:50',tz:'TR',hm:'14:50',h:'抵达伊斯坦布尔 IST',d:'转机仅 80 分钟：下机跟「国际转机」指示走，过转机安检，勿闲逛',loc:'伊斯坦布尔机场'},
+   {t:'16:10',tz:'TR',hm:'16:10',h:'TK2562 起飞 → 达拉曼'},
+   {t:'17:30',tz:'TR',hm:'17:30',h:'抵达达拉曼 DLM',d:'机场很小，取行李约 10–20 分钟',loc:'达拉曼机场'},
+   {t:'18:15',tz:'TR',hm:'18:15',h:'机场内购买前往卡什的小巴票',d:'出航站楼下楼梯有一排前往卡什的售票窗口，现场买票（约 1000 里拉/人，车程 2.5–3 小时）；某家没车就问隔壁窗口',loc:'达拉曼机场'},
+   {t:'≈21:30',tz:'TR',hm:'21:30',h:'卡什镇中心家乐福附近下车',d:'步行约 5 分钟到酒店',loc:'卡什家乐福'},
+   {t:'≈22:00',tz:'TR',hm:'22:00',h:'帕亚姆酒店入住',d:'已提前告知酒店晚到',loc:'帕亚姆酒店'}
+  ],
+  strip:{icons:['✈','✈','✈','🚌','🏨'],names:['浦东T2','伊斯坦布尔','达拉曼','卡什','帕亚姆酒店'],subs:['07:55','14:50','17:30','≈21:30','≈22:00'],edges:['air','air','bus','walk'],hrefs:['','','','',navC('帕亚姆酒店')]},
+  navs:[{label:'达拉曼机场 → 帕亚姆酒店（小巴路线）',stops:['Dalaman Airport','36.1999015,29.636924']}]},
+ {n:2,date:'10月9日',dow:'周五',title:'卡什 · 初来乍到',stay:'夜宿帕亚姆酒店',
+  rows:[
+   {t:'上午',h:'睡到自然醒，卡什小镇逛吃',d:'小镇很小，酒店出门就是主街',loc:'卡什小镇'},
+   {t:'下午',hm:'15:00',h:'顺路去卡什车站',d:'问清 10/12 早班车时刻（待办清单第 8 项）',loc:'卡什车站'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'距酒店步行约 4 分钟，往台阶高处坐',loc:'安迪菲勒斯古剧场'},
+   {t:'18:35',tz:'TR',hm:'18:35',h:'日落',d:'西面就是海，光落在剧场石阶上'},
+   {t:'晚上',h:'小镇晚餐',d:'收藏任选：FÜM Smokehouse / Bay Köfte / Tellina…'}
+  ],
+  strip:{icons:['🏨','🚉','🏛','🏨'],names:['帕亚姆酒店','卡什车站','古剧场','回酒店'],subs:['','问早班车','18:00',''],edges:['walk','walk','walk'],hrefs:[navC('帕亚姆酒店'),Q['卡什车站'],navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
+  navs:[{label:'酒店 → 车站 → 古剧场（步行）',stops:['36.1999015,29.636924','Kaş Otogar','36.2000393,29.6348504']}]},
+ {n:3,date:'10月10日',dow:'周六',title:'卡什 · 自由活动',stay:'夜宿帕亚姆酒店',
+  rows:[
+   {t:'白天',h:'自由活动（留白）',d:'逛吃、拍照，按收藏清单随心情走',loc:'卡什小镇'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',loc:'安迪菲勒斯古剧场'},
+   {t:'18:35',tz:'TR',hm:'18:35',h:'日落'}
+  ],
+  strip:{icons:['🏨','☕','🏛','🏨'],names:['帕亚姆酒店','卡什小镇','古剧场','回酒店'],subs:['','逛吃','18:00',''],edges:['walk','walk','walk'],hrefs:[navC('帕亚姆酒店'),Q['卡什小镇'],navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
+  navs:[{label:'酒店 → 古剧场（步行）',stops:['36.1999015,29.636924','36.2000393,29.6348504']}]},
+ {n:4,date:'10月11日',dow:'周日',title:'卡什 · 最后一天',stay:'夜宿帕亚姆酒店',
+  rows:[
+   {t:'白天',h:'卡什闲逛',d:'购物店随手逛：Terra decor / Lily\'s Corner / GRATİS',loc:'卡什小镇'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',loc:'安迪菲勒斯古剧场'},
+   {t:'18:35',tz:'TR',hm:'18:35',h:'日落 · 卡什最后一场'},
+   {t:'21:30',tz:'TR',hm:'21:30',h:'回酒店早睡',d:'次日凌晨出发，今晚结清账目'}
+  ],
+  strip:{icons:['🏨','🏛','🏨'],names:['帕亚姆酒店','古剧场','早睡'],subs:['','18:00','21:30'],edges:['walk','walk'],hrefs:[navC('帕亚姆酒店'),navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
+  navs:[{label:'酒店 → 古剧场（步行）',stops:['36.1999015,29.636924','36.2000393,29.6348504']}]},
+ {n:5,date:'10月12日',dow:'周一',title:'转场日 · 卡什 → 卡帕多奇亚',stay:'夜宿月亮酒店',
+  rows:[
+   {t:'≈05:30',tz:'TR',hm:'05:30',h:'出发前往达拉曼机场',d:'早班车（前一天在车站确认时刻）；行李前一晚收拾好',loc:'卡什车站'},
+   {t:'≈08:30',tz:'TR',hm:'08:30',h:'抵达达拉曼机场',d:'国内航班，值机+安检留 1.5 小时够用',loc:'达拉曼机场'},
+   {t:'10:20',tz:'TR',hm:'10:20',h:'TK2555 起飞 → 伊斯坦布尔'},
+   {t:'11:22',tz:'TR',hm:'11:22',h:'抵达伊斯坦布尔 IST',d:'转机 2 小时 33 分，很宽裕，可在机场吃午饭',loc:'伊斯坦布尔机场'},
+   {t:'13:55',tz:'TR',hm:'13:55',h:'TK2006 起飞 → 内夫谢希尔'},
+   {t:'15:10',tz:'TR',hm:'15:10',h:'抵达内夫谢希尔 NAV',loc:'内夫谢希尔机场'},
+   {t:'15:30',tz:'TR',hm:'15:30',h:'穿梭小巴去格雷梅',d:'报酒店名和人数，送到酒店门口（建议提前订，约 45–60 分钟）',loc:'内夫谢希尔机场'},
+   {t:'≈16:15',tz:'TR',hm:'16:15',h:'月亮酒店入住',loc:'卡帕多奇亚月亮酒店'},
+   {t:'17:45',tz:'TR',hm:'17:45',h:'Kaira Rooftop 看日落',d:'屋顶酒吧（16+），步行可达；先到先得好位置',loc:'Kaira Rooftop'},
+   {t:'18:20',tz:'TR',hm:'18:20',h:'日落',d:'若到店晚于 16:30，屋顶日落改到 10/13 傍晚'}
+  ],
+  strip:{icons:['🏨','🚌','✈','✈','🏨','🌇'],names:['帕亚姆','达拉曼','伊斯坦布尔','内夫谢希尔','月亮酒店','Kaira'],subs:['05:30','10:20','11:22','15:10','≈16:15','17:45'],edges:['bus','air','air','bus','walk'],hrefs:[navC('帕亚姆酒店'),Q['达拉曼机场'],Q['伊斯坦布尔机场'],Q['内夫谢希尔机场'],navC('卡帕多奇亚月亮酒店'),navC('Kaira Rooftop')]},
+  navs:[{label:'卡什车站 → 达拉曼机场（早班车路线）',stops:['Kaş Otogar','Dalaman Airport']},
+        {label:'内夫谢希尔机场 → 月亮酒店（穿梭车路线）',stops:['Nevşehir Kapadokya Airport','38.639896,34.8267134']}]},
+ {n:6,date:'10月13日',dow:'周二',title:'卡帕多奇亚 · 城堡与老爷车',stay:'夜宿月亮酒店',
+  rows:[
+   {t:'上午',h:'自然醒 · 格雷梅小镇闲逛',d:'Casaba Cafe 喝杯咖啡，逛逛陶器店',loc:'格雷梅小镇'},
+   {t:'14:00',tz:'TR',hm:'14:00',h:'乌奇希萨尔城堡',d:'打车约 10 分钟；登顶阶梯较陡，可在下方平台看全景，拍照效果同样好',loc:'乌奇希萨尔城堡'},
+   {t:'16:30',tz:'TR',hm:'16:30',h:'老爷车接驳出发 · 山谷追日落',d:'提前 1–2 天通过 LLT TOURISM 或酒店前台预订',loc:'LLT TOURISM'},
+   {t:'18:20',tz:'TR',hm:'18:20',h:'日落点拍照',d:'山谷风大，带外套'},
+   {t:'≈19:30',tz:'TR',hm:'19:30',h:'回小镇晚餐',d:'Tandır & Restaurant / Cappadocia Kebab'}
+  ],
+  strip:{icons:['🏨','☕','🏰','🚗','🏨'],names:['月亮酒店','格雷梅','乌奇希萨尔','老爷车','回酒店'],subs:['','上午','14:00','16:30','19:30'],edges:['walk','car','car','car'],hrefs:[navC('卡帕多奇亚月亮酒店'),Q['格雷梅小镇'],navC('乌奇希萨尔城堡'),navC('LLT TOURISM'),navC('卡帕多奇亚月亮酒店')]},
+  navs:[{label:'月亮酒店 → 乌奇希萨尔城堡（驾车约 10 分钟）',stops:['38.639896,34.8267134','38.6299062,34.805403']}]},
+ {n:7,date:'10月14日',dow:'周三',title:'格雷梅告别 · 深夜转机',stay:'机上 / 机场',
+  rows:[
+   {t:'上午',h:'睡到自然醒'},
+   {t:'12:00',tz:'TR',hm:'12:00',h:'退房 · 行李寄存前台',loc:'卡帕多奇亚月亮酒店'},
+   {t:'下午',h:'格雷梅逛吃',d:'Restoran Malaysia / 冰淇淋店…走之前最后扫一圈',loc:'格雷梅小镇'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'回酒店取行李',loc:'卡帕多奇亚月亮酒店'},
+   {t:'19:00',tz:'TR',hm:'19:00',h:'机场接驳出发（提前订）',loc:'卡帕多奇亚月亮酒店'},
+   {t:'21:10',tz:'TR',hm:'21:10',h:'TK2009 起飞 → 伊斯坦布尔'},
+   {t:'22:35',tz:'TR',hm:'22:35',h:'抵达伊斯坦布尔 IST',d:'不出机场：过边检盖章 → 国际出发区',loc:'伊斯坦布尔机场'},
+   {t:'23:00',tz:'TR',hm:'23:00',h:'国际区免税店购物',d:'基本通宵营业；软糖、茶、彩陶、蓝眼小物'},
+   {t:'00:45',tz:'TR',hm:'00:45',d15:1,h:'回到登机口附近候机',d:'01:35 起飞，预留登机时间'}
+  ],
+  strip:{icons:['🏨','🍽','🚐','✈','🛍'],names:['月亮酒店','格雷梅','内夫谢希尔','伊斯坦布尔','免税店'],subs:['12:00退房','下午','19:00','22:35','23:00'],edges:['walk','bus','air','none'],hrefs:[navC('卡帕多奇亚月亮酒店'),Q['格雷梅小镇'],Q['内夫谢希尔机场'],Q['伊斯坦布尔机场'],'']},
+  navs:[{label:'月亮酒店 → 内夫谢希尔机场（接驳路线）',stops:['38.639896,34.8267134','Nevşehir Kapadokya Airport']}]},
+ {n:8,date:'10月15日',dow:'周四',title:'回到上海',stay:'—',
+  rows:[
+   {t:'01:35',tz:'TR',hm:'01:35',h:'TK026 起飞（伊斯坦布尔）',loc:'伊斯坦布尔机场'},
+   {t:'16:45',tz:'北京',hm:'16:45',tz8:1,h:'抵达上海浦东 T2',d:'飞行约 10 小时，机上多睡',loc:'上海浦东T2'}
+  ],
+  strip:{icons:['✈','🏠'],names:['伊斯坦布尔','上海浦东'],subs:['01:35','16:45'],edges:['air'],hrefs:[Q['伊斯坦布尔机场'],Q['上海浦东T2']]},
+  navs:[]}
+];
+
+/* ================= 工具 ================= */
+function navC(name){var c=P[name];return 'https://www.google.com/maps/dir/?api=1&destination='+c[0]+','+c[1];}
+function locHref(loc){if(!loc)return null;if(P[loc])return navC(loc);return Q[loc]||null;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function tsOf(d,hm,tz){var p=hm.split(':'),h=+p[0],m=+p[1]||0;return Date.UTC(2026,9,d,h-tz,m);}
+function tzLabel(o){return (o.tz8?'北京 UTC+8':'TR UTC+3');}
+
+/* 倒计时事件序列 */
+function buildEvents(){
+  var evs=[];
+  DAYS.forEach(function(day){
+    day.rows.forEach(function(r){
+      if(!r.hm)return;
+      var tz=r.tz8?8:3;
+      var d=7+day.n+(r.d15?1:0); /* D1=10/8 */
+      evs.push({ts:tsOf(d,r.hm,tz),day:day,row:r});
+    });
+  });
+  evs.sort(function(a,b){return a.ts-b.ts;});
+  return evs;
+}
+var EVENTS=buildEvents();
+
+/* ================= 此刻关注 ================= */
+function nextEvent(now){for(var i=0;i<EVENTS.length;i++){if(EVENTS[i].ts>now)return EVENTS[i];}return null;}
+function pad(n){return (n<10?'0':'')+n;}
+function fmtCountdown(ms){
+  if(ms<0)ms=0;
+  var s=Math.floor(ms/1000),d=Math.floor(s/86400);s-=d*86400;
+  var h=Math.floor(s/3600);s-=h*3600;
+  var m=Math.floor(s/60),sec=s-m*60;
+  return d+'<small>天</small> '+pad(h)+':'+pad(m)+':'+pad(sec);
+}
+function trParts(ts){
+  return new Intl.DateTimeFormat('zh-CN',{timeZone:'Europe/Istanbul',month:'long',day:'numeric',weekday:'long',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ts));
+}
+function tick(){
+  var now=Date.now();
+  /* 土耳其时钟 */
+  var tr=new Intl.DateTimeFormat('zh-CN',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+  var el=document.getElementById('trClock');if(el)el.textContent=tr;
+  /* 倒计时 */
+  var ev=nextEvent(now);
+  var bd=document.getElementById('nbDay'),bt=document.getElementById('nbTitle'),bc=document.getElementById('nbCount'),
+      bd2=document.getElementById('nbDate'),bd3=document.getElementById('nbDesc'),btm=document.getElementById('nbTimes'),bl=document.getElementById('nbLoc');
+  if(!ev){
+    bd.textContent='旅程结束';bd.style.background='#8a8a8a';
+    bd2.textContent='';bt.innerHTML='✈ 欢迎回家 · 10月15日 已抵达上海';bd3.textContent='';
+    bc.innerHTML='<span class="done-msg">旅行愉快 ✨</span>';btm.textContent='';bl.innerHTML='';
+    return;
+  }
+  var c=DAYC[ev.day.n-1];
+  bd.textContent='D'+ev.day.n+' · '+ev.day.date+' '+ev.day.dow;
+  bd.style.background=c;
+  bd2.textContent=ev.day.title;
+  bt.textContent=ev.row.t+(ev.row.tz?' '+ev.row.tz:'')+' · '+ev.row.h;
+  bd3.textContent=ev.row.d||'';
+  bc.innerHTML=fmtCountdown(ev.ts-now);
+  /* 当地时间换算 */
+  var viewLocal=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ev.ts));
+  var trStr=trParts(ev.ts);
+  btm.innerHTML='事件时间：'+ev.row.t+'（'+tzLabel(ev.row)+'）· 土耳其当地 '+trStr+' · 你所在地 '+viewLocal;
+  var href=locHref(ev.row.loc);
+  bl.innerHTML=ev.row.loc?('<a class="chip" target="_blank" rel="noopener" href="'+href+'">'+esc(ev.row.loc)+'</a>'):'';
+}
+tick();setInterval(tick,1000);
+
+/* 白天黑夜自动配色（按你所在地时间） */
+function applyTheme(){
+  var h=new Date().getHours();
+  var dark=(h<6||h>=18);
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+}
+applyTheme();setInterval(applyTheme,60000);
+
+/* ================= 总览地图 ================= */
+(function(){
+  var W=460,H=250,PX0=25.6,PX1=45.4,PY0=35.4,PY1=42.4;
+  function px(lng){return (lng-PX0)/(PX1-PX0)*W;}
+  function py(lat){return (PY1-lat)/(PY1-PY0)*H;}
+  var COAST=[
+   [41.9,26.5],[40.9,26.1],[40.4,26.2],[40.0,26.1],[39.5,26.2],[39.1,26.4],[38.7,26.3],[38.4,26.5],
+   [38.3,27.0],[37.9,27.1],[37.7,27.0],[37.4,27.5],[37.0,27.6],[36.8,27.9],[36.8,28.2],[37.1,28.4],
+   [36.9,29.0],[36.7,29.1],[36.6,29.4],[36.8,29.6],[36.6,30.0],[36.3,30.4],[36.6,30.7],[36.8,31.0],
+   [36.7,31.6],[36.5,32.0],[36.2,32.8],[36.1,33.4],[36.0,33.9],[36.5,34.4],[36.8,35.1],[36.6,35.8],
+   [36.3,36.1],[36.8,36.5],[37.2,36.9],[37.0,37.8],[37.5,38.8],[37.5,39.5],[37.3,40.1],[37.4,40.9],
+   [37.2,41.7],[37.5,42.5],[38.6,43.4],[39.8,44.1],[40.0,44.5],[40.6,44.2],[41.1,43.5],[41.6,43.3],
+   [41.9,43.0],[41.6,42.6],[41.3,41.7],[41.1,40.9],[41.4,40.2],[41.0,39.0],[41.3,37.9],[41.3,36.9],
+   [41.8,35.1],[41.8,34.0],[41.5,32.5],[41.5,31.2],[41.1,30.0],[41.2,29.2],[41.3,28.7],[41.0,28.2],
+   [40.5,27.6],[41.6,26.8]
+  ];
+  function jitter(i,amp){var x=Math.sin(i*12.9898+7.233)*43758.5453;return (x-Math.floor(x)-.5)*2*amp;}
+  function coastPath(){
+    return COAST.map(function(p,i){
+      var a=px(p[1])+jitter(i,3),b=py(p[0])+jitter(i+51,3);
+      return a.toFixed(1)+','+b.toFixed(1);
+    }).join(' ');
+  }
+  var S={KAS:[36.2000,29.6370],GOREME:[38.6420,34.8290],IST:[41.2608,28.7418],DLM:[36.7139,28.7925],NAV:[38.7703,34.5334]};
+  function spt(c){return [px(c[1]),py(c[0])];} /* [lat,lng] -> 屏幕 [x,y] */
+  var SK={KAS:spt(S.KAS),GOREME:spt(S.GOREME),IST:spt(S.IST),DLM:spt(S.DLM),NAV:spt(S.NAV)};
+  var LEGS=[
+   {d:1,type:'air',a:[W-2,py(39.2)],b:SK.IST,label:'TK281'},
+   {d:1,type:'air',a:SK.IST,b:SK.DLM,label:'TK2562'},
+   {d:1,type:'land',a:SK.DLM,b:SK.KAS,label:'小巴 2.5–3h'},
+   {d:5,type:'land',a:SK.KAS,b:SK.DLM,label:'早班车'},
+   {d:5,type:'air',a:SK.DLM,b:SK.IST,label:'TK2555'},
+   {d:5,type:'air',a:SK.IST,b:SK.NAV,label:'TK2006'},
+   {d:5,type:'land',a:SK.NAV,b:SK.GOREME,label:'穿梭车'},
+   {d:7,type:'land',a:SK.GOREME,b:SK.NAV,label:'接驳'},
+   {d:7,type:'air',a:SK.NAV,b:SK.IST,label:'TK2009'},
+   {d:8,type:'air',a:SK.IST,b:[W-2,py(40.4)],label:'TK026'}
+  ];
+  var STAYS=[
+   {n:'第1–4晚',at:S.KAS,label:'帕亚姆酒店'},
+   {n:'第5–6晚',at:S.GOREME,label:'月亮酒店'},
+   {n:'第7晚',at:S.IST,label:'机场中转'}
+  ];
+  var LABELS=[['卡什',S.KAS],['格雷梅',S.GOREME],['伊斯坦布尔',S.IST],['达拉曼',S.DLM],['内夫谢希尔',S.NAV]];
+  function airPath(a,b){
+    var x1=a[0],y1=a[1],x2=b[0],y2=b[1];
+    var mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy)||1;
+    var cx=mx-dy/len*len*0.18,cy=my+dx/len*len*0.18;
+    var t=.5,qx=.25*x1+.5*cx+.25*x2,qy=.25*y1+.5*cy+.25*y2;
+    return {d:'M'+x1.toFixed(1)+','+y1.toFixed(1)+' Q'+cx.toFixed(1)+','+cy.toFixed(1)+' '+x2.toFixed(1)+','+y2.toFixed(1),mx:qx,my:qy};
+  }
+  function landPath(a,b){
+    var x1=a[0],y1=a[1],x2=b[0],y2=b[1];
+    var pts=[],i;
+    for(i=0;i<=8;i++){
+      var t=i/8,x=x1+(x2-x1)*t,y=y1+(y2-y1)*t;
+      pts.push((x+jitter(i,2.5)).toFixed(1)+','+(y+jitter(i+31,2.5)).toFixed(1));
+    }
+    return {d:'M'+pts.join(' L'),mx:(x1+x2)/2,my:(y1+y2)/2};
+  }
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="行程总览示意图">';
+  svg+='<rect x="1" y="1" width="'+(W-2)+'" height="'+(H-2)+'" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4"/>';
+  /* 海面波纹 */
+  svg+='<path d="M18 30 q 12 -8 24 0 t 24 0 t 24 0" fill="none" stroke="var(--line)" stroke-width="1.5" opacity=".8"/>';
+  svg+='<path d="M360 215 q 12 -8 24 0 t 24 0" fill="none" stroke="var(--line)" stroke-width="1.5" opacity=".8"/>';
+  /* 国土 */
+  svg+='<polyline points="'+coastPath()+'" fill="var(--card)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>';
+  svg+='<polyline points="'+coastPath()+'" fill="none" stroke="var(--ink)" stroke-width="1" opacity=".25" transform="translate(1.2 1.4)"/>';
+  /* 航线/陆线 */
+  LEGS.forEach(function(leg,idx){
+    var col=DAYC[leg.d-1];
+    var a=leg.a,b=leg.b;
+    if(leg.type==='air'){
+      var ap=airPath(a,b);
+      svg+='<path d="'+ap.d+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-dasharray="7 5" stroke-linecap="round"/>';
+      svg+='<text x="'+(ap.mx+4)+'" y="'+(ap.my-5)+'" font-size="10" fill="var(--muted)">✈ '+esc(leg.label)+'</text>';
+    }else{
+      var lp=landPath(a,b);
+      svg+='<path d="'+lp.d+'" fill="none" stroke="'+col+'" stroke-width="2.5" stroke-linecap="round"/>';
+      svg+='<text x="'+(lp.mx+4)+'" y="'+(lp.my-5)+'" font-size="10" fill="var(--muted)">🚌 '+esc(leg.label)+'</text>';
+    }
+  });
+  /* 上海浦东往返标注 */
+  svg+='<text x="'+(W-4)+'" y="'+(py(38.0)-6)+'" font-size="10" fill="var(--muted)" text-anchor="end">上海浦东 ⟷ ✈</text>';
+  /* 住宿标注 */
+  STAYS.forEach(function(st){
+    var x=px(st.at[1]),y=py(st.at[0]);
+    svg+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>';
+    svg+='<text x="'+x.toFixed(1)+'" y="'+(y+3.5).toFixed(1)+'" font-size="8.5" text-anchor="middle" fill="var(--accent)" font-weight="700">'+esc(st.n)+'</text>';
+    svg+='<text x="'+x.toFixed(1)+'" y="'+(y+22).toFixed(1)+'" font-size="10" text-anchor="middle" fill="var(--ink)">'+esc(st.label)+'</text>';
+  });
+  /* 城市名 */
+  LABELS.forEach(function(lb){
+    var x=px(lb[1][1]),y=py(lb[1][0]);
+    svg+='<text x="'+x.toFixed(1)+'" y="'+(y-12).toFixed(1)+'" font-size="10.5" text-anchor="middle" fill="var(--muted)">'+lb[0]+'</text>';
+  });
+  svg+='</svg>';
+  document.getElementById('bigMap').innerHTML=svg;
+  document.getElementById('mapLegend').innerHTML=
+    '<span>图例：</span>'+
+    '<span><span class="sw" style="background:'+DAYC[0]+'"></span>D1 出发</span>'+
+    '<span><span class="sw" style="background:'+DAYC[4]+'"></span>D5 转场</span>'+
+    '<span><span class="sw" style="background:'+DAYC[6]+'"></span>D7 返程</span>'+
+    '<span><span class="sw" style="background:'+DAYC[7]+'"></span>D8 回国</span>'+
+    '<span><span class="sw air"></span>飞行</span>'+
+    '<span><span class="sw" style="background:var(--muted)"></span>大巴/接驳</span>';
+})();
+
+/* ================= 机票与酒店 ================= */
+(function(){
+  var h='';
+  FLIGHTS.forEach(function(f){
+    h+='<div class="fh-card"><h3>'+f.no+' <span class="meta">'+f.d+'</span></h3>';
+    h+='<div class="big">'+f.dep+' <span class="tzchip">'+f.dtz+'</span> → '+f.arr+' <span class="tzchip">'+f.atz+'</span></div>';
+    h+='<div class="route">'+esc(f.from)+' → '+esc(f.to)+' · 飞行 '+f.dur+'</div>';
+    if(f.warn)h+='<div class="policies">⚠️ '+f.warn+'</div>';
+    h+='</div>';
+  });
+  HOTELS.forEach(function(hh){
+    h+='<div class="fh-card"><h3>'+hh.name+' <span class="meta">'+hh.en+'</span></h3>';
+    h+='<div class="meta">'+hh.nights+'</div>';
+    h+='<div class="route">📍 '+esc(hh.addr)+'</div>';
+    h+='<div class="route">☎ <a href="tel:'+hh.tel+'">'+hh.phone+'</a> · <a target="_blank" rel="noopener" href="'+navC(hh.name)+'">打开导航</a></div>';
+    h+='<div class="policies">入住 '+hh.ci+' · 退房 '+hh.co+' · '+esc(hh.note)+'</div>';
+    h+='</div>';
+  });
+  document.getElementById('fhGrid').innerHTML=h;
+})();
+
+/* ================= 逐日行程 ================= */
+function dayStrip(day){
+  var svg='<svg viewBox="0 0 700 160">';
+  var n=day.strip.icons.length;
+  var pts=[];
+  var i;
+  for(i=0;i<n;i++){
+    var x=60+i*(580/(n-1||1));
+    var y=84+(i%2?52:-52);
+    pts.push({x:x,y:y});
+    svg+='<circle cx="'+x+'" cy="'+y+'" r="11" fill="var(--card)" stroke="'+DAYC[day.n-1]+'" stroke-width="2.5"/>';
+    svg+='<text x="'+x+'" y="'+(y+5)+'" font-size="12" text-anchor="middle">'+day.strip.icons[i]+'</text>';
+    var nm=day.strip.names[i],sub=day.strip.subs[i],hf=day.strip.hrefs[i];
+    if(hf)svg+='<a href="'+hf+'" target="_blank" rel="noopener">';
+    svg+='<text x="'+x+'" y="'+(y+28)+'" font-size="11.5" text-anchor="middle" fill="var(--ink)">'+esc(nm)+'</text>';
+    if(sub)svg+='<text x="'+x+'" y="'+(y+41)+'" font-size="10" text-anchor="middle" fill="var(--muted)">'+sub+'</text>';
+    if(hf)svg+='</a>';
+  }
+  var ic={'air':'✈','bus':'🚌','walk':'🚶','car':'🚗','none':'·'};
+  for(i=0;i<n-1;i++){
+    var e=day.strip.edges[i],a=pts[i],b=pts[i+1];
+    var col=DAYC[day.n-1];
+    if(e==='air'){
+      var cx=(a.x+b.x)/2,cy=Math.min(a.y,b.y)-36;
+      svg+='<path d="M'+a.x+','+(a.y-12)+' Q'+cx+','+cy+' '+b.x+','+(b.y-12)+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round"/>';
+    }else if(e!=='none'){
+      svg+='<path d="M'+a.x+','+(a.y+(a.y>b.y?12:-12))+' L'+b.x+','+(b.y+(b.y>a.y?12:-12))+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-linecap="round" stroke-dasharray="'+(e==='walk'?'3 4':'')+'"/>';
+    }else{
+      svg+='<path d="M'+a.x+','+(a.y+12)+' Q'+((a.x+b.x)/2)+','+Math.max(a.y,b.y)+30+' '+b.x+','+(b.y+12)+'" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="3 4"/>';
+    }
+    var mx=(a.x+b.x)/2,my=(a.y+b.y)/2+(a.y>b.y?10:-10);
+    if(e!=='none')svg+='<text x="'+mx+'" y="'+(my-6)+'" font-size="12" text-anchor="middle">'+ic[e]+'</text>';
+  }
+  svg+='</svg>';
+  return svg;
+}
+(function(){
+  var h='';
+  DAYS.forEach(function(day){
+    var col=DAYC[day.n-1];
+    h+='<div class="day">';
+    h+='<div class="day-head"><span class="dnum" style="background:'+col+'">D'+day.n+'</span>';
+    h+='<span class="ddate">'+day.date+' '+day.dow+' · '+esc(day.title)+'</span>';
+    h+='<span class="stay">'+esc(day.stay)+'</span></div>';
+    h+='<details class="maptog" '+(day.n===1?'open':'')+'><summary>当日路线图</summary><div class="stripbox">'+dayStrip(day)+'</div></details>';
+    if(day.navs.length){
+      h+='<div class="navbtns">';
+      day.navs.forEach(function(nv){
+        var stops=nv.stops.map(encodeURIComponent);
+        var u='https://www.google.com/maps/dir/?api=1&origin='+stops[0]+'&destination='+stops[stops.length-1];
+        if(stops.length>2)u+='&waypoints='+stops.slice(1,-1).join('|');
+        h+='<a class="navbtn" target="_blank" rel="noopener" href="'+u+'">🧭 '+esc(nv.label)+'</a>';
+      });
+      h+='</div>';
+    }
+    h+='<div class="tl">';
+    day.rows.forEach(function(r){
+      h+='<div class="row" style="display:contents">';
+      h+='<div class="t">'+(r.t.indexOf('≈')===0?'<span class="amp">≈</span>'+esc(r.t.slice(1)):esc(r.t));
+      if(r.tz)h+=' <span class="tzchip" style="display:inline-block;margin-top:2px">'+r.tz+'</span>';
+      h+='</div>';
+      h+='<div class="c"><h4>'+esc(r.h)+'</h4>';
+      if(r.d)h+='<p>'+esc(r.d)+'</p>';
+      if(r.loc){var hf=locHref(r.loc);
+        if(hf)h+='<a class="chip" target="_blank" rel="noopener" href="'+hf+'">'+esc(r.loc)+'</a>';
+        else h+='<span class="chip">'+esc(r.loc)+'</span>';
+      }
+      h+='</div></div>';
+    });
+    h+='</div></div>';
+  });
+  document.getElementById('days').innerHTML=h;
+})();
+
+/* ================= 收藏速查 ================= */
+(function(){
+  var h='';
+  PLIST.forEach(function(grp){
+    h+='<div class="card"><h3 style="font-weight:700;font-size:16px;margin-bottom:6px">'+grp[0]+'</h3>';
+    for(var i=1;i<grp.length;i++){
+      var nm=grp[i];
+      h+='<a class="chip" style="margin-right:10px" target="_blank" rel="noopener" href="'+navC(nm)+'">'+esc(nm)+' <span style="opacity:.6">· '+PTAG[nm]+'</span></a>';
+    }
+    h+='</div>';
+  });
+  document.getElementById('speedList').innerHTML=h;
+})();
+</script>
+</body>
+</html>
