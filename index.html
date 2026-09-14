@@ -147,6 +147,7 @@ ul.rev-list a{color:var(--ink); text-decoration:none;}
 ul.rev-list a:active{color:var(--accent);}
 .rev-meta{color:var(--muted); font-size:11px; white-space:nowrap;}
 .rev-note{font-size:12px; color:var(--muted); margin-top:6px; padding:6px 10px; background:var(--bg); border-radius:8px; line-height:1.6;}
+.diet-note{font-size:13px; margin-top:6px; padding:8px 10px; background:var(--tint); border-left:3px solid var(--accent); border-radius:8px; color:var(--ink);}
 
 /* ---------- 待办 / 贴士 ---------- */
 ol.todos{list-style:none; counter-reset:td; margin-top:8px;}
@@ -213,6 +214,10 @@ footer a{color:var(--muted);}
 <section>
   <h2 class="sec">卡什餐饮 · 小红书口碑</h2>
   <div class="sec-sub">评价整理自小红书 · 点击标题跳转原笔记 · 时间为笔记发布日期</div>
+  <div class="card rev-card">
+    <h3>我的忌口</h3>
+    <div class="diet-note">不吃芝士、乳酪与奶制品（奶茶、牛奶冰淇淋例外）；咖啡偏爱美式 &gt; 拿铁。看评价时留意奶类甜品与酱汁。</div>
+  </div>
   <div id="revList"></div>
 </section>
 
@@ -737,13 +742,13 @@ var REVIEWS=[
         ['（合集）餐厅分享帖：土耳其最喜欢的素食餐厅，泰式炒面+菌菇意面全光盘','2025-07',140,XHS+'686b9a140000000017033636?xsec_token=ABsuJHRR6ZMA3hYmQ4W5iU_Ha52sKZQIJGixnDBS4M-QU=&xsec_source=']],
   bad:[['合集帖：只推荐喝饮料——豆腐、洋葱圈、泰式炒米粉都难吃','2024-08',124,XHS+'66cb170d000000001d01b214?xsec_token=ABKHCjlRZpWfUq1QSzrCKJ9Hjr0dYuv6JwYB-wiYPUL-c=&xsec_source='],
        ['（合集）躺平10日帖：海景棒环境精致，但吃的一般、酒好喝','2025-04',181,XHS+'680b8133000000000b016896?xsec_token=ABs-KnJ8TLxyIEGQ2kkGxjTJFEBTLHASIxgmwEgmtyd6M=&xsec_source=']],
-  note:'素食餐厅，日落海景是最大卖点；菜品口碑两极（124赞帖说难吃 vs 140赞帖全光盘）；海边风大。'},
+  note:'素食餐厅，日落海景是最大卖点；菜品口碑两极（124赞帖说难吃 vs 140赞帖全光盘）；海边风大。140赞帖另赞美式与 lemonade——忌口友好。'},
  {n:'Linckia Roastery Cafe',tag:'咖啡',
   good:[['咖啡人在kas小镇喝什么：中国人开的，5kg烘焙机，老板鹅姐超nice','2026-09',59,XHS+'6aa2c3f60000000011036f07?xsec_token=ABHWibNJroatERYh4b8h9KcR8F0i7u2z2-o_F1U0NE5zo=&xsec_source='],
         ['解锁宝藏咖啡馆，竟然是国人开的','2024-03',27,XHS+'65e6ffac0000000001028a39?xsec_token=AB0EbNgV9BMaqJDytM4sxvckcIprD_2Lny1gXF-B-7Q_4=&xsec_source='],
         ['卡什小镇的烘焙咖啡店Linckia｜推荐','2022-07',20,XHS+'62d431c0000000001101184f?xsec_token=AB2JfL79oMIBV-OyOduDzZekzWQWgxQRjVD3eaMPqTDV0=&xsec_source=']],
   bad:[],
-  note:'就在三角梅与古剧场旁，顺路；无差评。'},
+  note:'就在三角梅与古剧场旁，顺路；无差评；精品烘焙店，点美式正好。'},
  {n:'Bay Köfte',tag:'餐厅',
   good:[['最适合中国胃的谷歌高分土餐：4.6分肉丸店，700里拉套餐两人吃撑','2026-06',114,XHS+'6a35aeac00000000170289c4?xsec_token=ABced18ktkb_akJFdcfTH9mKpGEO3ULFNbJAjwYYQd5A4=&xsec_source=']],
   bad:[],
@@ -758,13 +763,13 @@ var REVIEWS=[
  {n:'Tellina Restaurant',tag:'餐厅',
   good:[['旅程最好吃的海鲜餐：Tellina小蛤配黄油柠檬汁绝配，炸鱼超脆','2026-04',47,XHS+'69db26430000000021007ea8?xsec_token=ABpBMFJb2WuA3znNZ8f4Enp6AsFsXBDN6lirGrPAbBHP8=&xsec_source=']],
   bad:[],
-  note:'作者称「有点少贵但服务很好，绝对不踩雷」。'},
+  note:'招牌小蛤配黄油柠檬汁（含黄油）；作者称「绝对不踩雷」。'},
  {n:'Ege Restaurant Taner Usta',tag:'餐厅',
   good:[['连续去吃了两天：牛蹄汤像老妈蹄花，烤羊排炭火香，菜量大到打包','2025-07',56,XHS+'68780df3000000001d00cdde?xsec_token=ABf1D1ljFt5XV_9p5JilVF3kp7fhfmFVYiQnharu1XQgE=&xsec_source='],
         ['卡什这家 Ege restaurant 值得一个赞','2026-05',6,XHS+'69f4db69000000003501e9ad?xsec_token=ABVwqP1AHelH7mT4NubTCDRw_bKg015Fsxxw4MhDYbVLA=&xsec_source='],
         ['卡什Kas小镇推荐饭店Ege restaurant','2026-01',19,XHS+'69764bd5000000002200ac12?xsec_token=ABPuD6AFz4nKZVuyTR1bTqwaQlxUFLd6szpgBzMWdt2es=&xsec_source=']],
   bad:[],
-  note:'每桌送烤馕和沙拉；米布丁每天吃一个（很清甜）。'},
+  note:'每桌送烤馕和沙拉；好评里的米布丁是奶制甜品，忌口慎点。'},
  {n:'Sushi Kaşhi',tag:'餐厅',
   good:[['超绝海景亚洲餐厅：海鲜炒面有锅气、态度超好（但寿司一般）','2024-07',217,XHS+'66a963d70000000027013873?xsec_token=ABg4v3CLOYnZ5j2PvbsJugTeRMTeP7_kVjuoknIlylx9g=&xsec_source='],
         ['打卡Sushi Kaşhi：老板人好送寿司，日落绝美机位','2025-08',9,XHS+'68ab8036000000001c03cb35?xsec_token=ABF0LCUvDtYkzyZzgPmqMk71ku1qGYlM-2lSxehdTqjo4=&xsec_source='],
