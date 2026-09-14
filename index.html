@@ -89,9 +89,12 @@ h2.sec::after{
 .fh-card .route{font-size:13px; color:var(--muted); margin-top:2px;}
 .fh-card .policies{font-size:12px; color:var(--muted); margin-top:6px;}
 
-/* ---------- 逐日行程 ---------- */
-.day{margin:26px 0;}
-.day-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-bottom:2px dashed var(--line); padding-bottom:8px;}
+/* ---------- 每日行程 ---------- */
+details.day{margin:26px 0;}
+details.day>summary.day-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-bottom:2px dashed var(--line); padding:6px 2px 8px; cursor:pointer; list-style:none; -webkit-tap-highlight-color:transparent;}
+details.day>summary.day-head::-webkit-details-marker{display:none;}
+details.day>summary.day-head::after{content:"▸"; color:var(--muted); transition:transform .15s; flex:0 0 auto;}
+details.day[open]>summary.day-head::after{transform:rotate(90deg);}
 .day-head .dnum{font-weight:800; font-size:15px; color:#fff; border-radius:8px; padding:1px 9px;}
 .day-head .ddate{font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:600; font-size:19px; letter-spacing:1px;}
 .day-head .dtip{color:var(--muted); font-size:12px;}
@@ -180,8 +183,8 @@ footer a{color:var(--muted);}
 </section>
 
 <section>
-  <h2 class="sec">逐日行程</h2>
-  <div class="sec-sub">点击地点直接唤起 Google 地图导航 · 每天上部可展开当日路线</div>
+  <h2 class="sec">每日行程</h2>
+  <div class="sec-sub">点日期展开当天安排 · 点击地点直接唤起 Google 地图导航</div>
   <div id="days"></div>
 
   <h2 class="sec">收藏地点速查</h2>
@@ -271,7 +274,7 @@ var PTAG={
  'Dondurma Dükkanı':'冰淇淋','Oburus Momus':'餐厅','Linckia Roastery Cafe':'咖啡',
  'Bay Köfte':'餐厅','FÜM Smokehouse':'烤肉','Tellina Restaurant':'餐厅',
  'Ege Restaurant Taner Usta':'餐厅','Sushi Kaşhi':'餐厅','Terra decor':'购物',
- "Lily's Corner":'购物','GRATİS KAŞ CD':'购物','三角梅':'打卡',
+ "Lily's Corner":'购物','GRATİS KAŞ CD':'购物','三角梅':'景点',
  '卡帕多奇亚月亮酒店':'住','乌奇希萨尔城堡':'景点','Kaira Rooftop':'日落',
  'Cappadocia Kebab':'烤肉','Tandır & Restaurant':'餐厅','Restoran Malaysia':'餐厅',
  'Casaba Cafe':'咖啡','Red Red Wine House':'酒吧','LLT TOURISM':'旅行社'
@@ -309,7 +312,7 @@ var HOTELS=[
  {name:'卡帕多奇亚月亮酒店', en:'Lunar Cappadocia Hotel', nights:'10月12日 – 14日 · 2 晚', addr:'Aydınlı Mah. Görçeli Sk. No:12, 50180 Göreme/Nevşehir', phone:'+90 384 271 23 83', tel:'+903842712383', ci:'14:00 后', co:'12:00 前', lat:38.639896, lng:34.8267134, note:'格雷梅镇内，步行可达各家餐厅'}
 ];
 
-/* 逐日行程 */
+/* 每日行程 */
 /* t:显示时间 tz:TR=土耳其UTC+3 / 北京 hm:倒计时用(24h,可空) d15:日期+1 loc:地点名 */
 var DAYS=[
  {n:1,date:'10月8日',dow:'周四',title:'飞往土耳其 · 抵达卡什',stay:'夜宿帕亚姆酒店',
@@ -604,7 +607,7 @@ applyTheme();setInterval(applyTheme,60000);
   document.getElementById('fhGrid').innerHTML=h;
 })();
 
-/* ================= 逐日行程 ================= */
+/* ================= 每日行程 ================= */
 function dayStrip(day){
   var svg='<svg viewBox="0 0 700 160">';
   var n=day.strip.icons.length;
@@ -644,10 +647,10 @@ function dayStrip(day){
   var h='';
   DAYS.forEach(function(day){
     var col=DAYC[day.n-1];
-    h+='<div class="day">';
-    h+='<div class="day-head"><span class="dnum" style="background:'+col+'">D'+day.n+'</span>';
+    h+='<details class="day">';
+    h+='<summary class="day-head"><span class="dnum" style="background:'+col+'">D'+day.n+'</span>';
     h+='<span class="ddate">'+day.date+' '+day.dow+' · '+esc(day.title)+'</span>';
-    h+='<span class="stay">'+esc(day.stay)+'</span></div>';
+    h+='<span class="stay">'+esc(day.stay)+'</span></summary>';
     h+='<details class="maptog" '+(day.n===1?'open':'')+'><summary>当日路线图</summary><div class="stripbox">'+dayStrip(day)+'</div></details>';
     if(day.navs.length){
       h+='<div class="navbtns">';
@@ -673,7 +676,7 @@ function dayStrip(day){
       }
       h+='</div></div>';
     });
-    h+='</div></div>';
+    h+='</div></details>';
   });
   document.getElementById('days').innerHTML=h;
 })();
