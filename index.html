@@ -9,11 +9,13 @@
   --bg:#edf3f5; --card:#ffffff; --ink:#21282e; --muted:#75828b; --line:#d3dde2;
   --accent:#0e7f78; --tint:rgba(14,127,120,.10); --shadow:0 1px 3px rgba(15,40,55,.08);
   --bad:#b0544a;
+  --navbg:rgba(237,243,245,.72);
 }
 [data-theme=dark]{
   --bg:#0f171c; --card:#182228; --ink:#e3eaee; --muted:#8b98a2; --line:#2c3a41;
   --accent:#4ac3b3; --tint:rgba(74,195,179,.14); --shadow:0 1px 3px rgba(0,0,0,.45);
   --bad:#e08a7c;
+  --navbg:rgba(15,23,28,.72);
 }
 a{color:var(--accent); text-decoration:none;}
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -30,13 +32,16 @@ body{
 #topnav{
   position:fixed; top:0; left:0; right:0; z-index:60;
   display:flex; gap:6px; overflow-x:auto; padding:8px 12px;
-  background:var(--bg); border-bottom:1px solid var(--line);
+  background:var(--navbg);
+  -webkit-backdrop-filter:blur(16px) saturate(1.5);
+  backdrop-filter:blur(16px) saturate(1.5);
+  border-bottom:1px solid var(--line); box-shadow:var(--shadow);
   -webkit-overflow-scrolling:touch; scrollbar-width:none;
 }
 #topnav::-webkit-scrollbar{display:none;}
 #topnav a{
-  flex:0 0 auto; font-size:12px; color:var(--muted);
-  background:var(--card); border:1px solid var(--line);
+  flex:0 0 auto; font-size:13px; font-weight:600; color:var(--ink);
+  background:var(--card); border:1.5px solid var(--line);
   border-radius:99px; padding:4px 12px; white-space:nowrap; text-decoration:none;
 }
 #topnav a:active{color:var(--accent); border-color:var(--accent);}
