@@ -17,14 +17,30 @@
 }
 a{color:var(--accent); text-decoration:none;}
 *{box-sizing:border-box; margin:0; padding:0;}
-html{-webkit-text-size-adjust:100%;}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth;}
 body{
   background:var(--bg); color:var(--ink);
   font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-  line-height:1.65; padding-bottom:56px;
+  line-height:1.65; padding-bottom:56px; padding-top:52px;
   transition:background .4s,color .4s;
 }
 .wrap{max-width:760px; margin:0 auto; padding:0 16px;}
+
+/* ---------- 顶部导航 ---------- */
+#topnav{
+  position:fixed; top:0; left:0; right:0; z-index:60;
+  display:flex; gap:6px; overflow-x:auto; padding:8px 12px;
+  background:var(--bg); border-bottom:1px solid var(--line);
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+#topnav::-webkit-scrollbar{display:none;}
+#topnav a{
+  flex:0 0 auto; font-size:12px; color:var(--muted);
+  background:var(--card); border:1px solid var(--line);
+  border-radius:99px; padding:4px 12px; white-space:nowrap; text-decoration:none;
+}
+#topnav a:active{color:var(--accent); border-color:var(--accent);}
+#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secTodos,#secTips{scroll-margin-top:56px;}
 
 /* ---------- 头部 ---------- */
 header{padding:28px 16px 8px; text-align:center;}
@@ -53,6 +69,11 @@ h2.sec::after{
   opacity:.55;
 }
 .sec-sub{color:var(--muted); font-size:13px; margin:6px 0 2px 2px;}
+details.revg>summary{list-style:none; cursor:pointer; -webkit-tap-highlight-color:transparent;}
+details.revg>summary::-webkit-details-marker{display:none;}
+details.revg>summary::after{content:"▸"; display:inline-block; margin-left:8px; color:var(--muted); font-size:16px; transition:transform .15s; vertical-align:middle;}
+details.revg[open]>summary::after{transform:rotate(90deg);}
+details.revg>summary h2{margin-bottom:2px;}
 
 /* ---------- 此刻关注 ---------- */
 #nowCard .next-line{display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
@@ -183,6 +204,18 @@ footer a{color:var(--muted);}
 <body>
 <div class="wrap">
 
+<nav id="topnav">
+  <a href="#nowCard">此刻关注</a>
+  <a href="#secMap">总览</a>
+  <a href="#secFH">机酒</a>
+  <a href="#secDays">行程</a>
+  <a href="#secSpeed">速查</a>
+  <a href="#secRev1">卡什口碑</a>
+  <a href="#secRev2">卡帕口碑</a>
+  <a href="#secTodos">待办</a>
+  <a href="#secTips">贴士</a>
+</nav>
+
 <header>
   <h1>土耳其Guidebook</h1>
   <div class="sub">卡什 × 卡帕多奇亚 · 2026.10.08 – 10.15 · 单人 · 8 天</div>
@@ -198,46 +231,50 @@ footer a{color:var(--muted);}
   <div id="nbLoc"></div>
 </section>
 
-<section>
+<section id="secMap">
   <h2 class="sec">行程总览</h2>
   <div class="sec-sub">手绘示意图 · 按天配色 · 每晚住宿已标注</div>
   <div class="card mapbox" id="bigMap"></div>
   <div class="legend" id="mapLegend"></div>
 </section>
 
-<section>
+<section id="secFH">
   <h2 class="sec">已确认的机票与酒店</h2>
   <div class="sec-sub">均为当地时间 · 不含任何预订号</div>
   <div class="fh-grid" id="fhGrid"></div>
 </section>
 
-<section>
+<section id="secDays">
   <h2 class="sec">每日行程</h2>
   <div class="sec-sub">点日期展开当天安排 · 点击地点直接唤起 Google 地图导航</div>
   <div id="days"></div>
 
-  <h2 class="sec">收藏地点速查</h2>
+  <h2 class="sec" id="secSpeed">收藏地点速查</h2>
   <div class="sec-sub">24 处收藏全部在此 · 点击直接导航</div>
   <div id="speedList"></div>
 </section>
 
-<section>
-  <h2 class="sec">卡什餐饮口碑</h2>
+<section id="secRev1">
+  <details class="revg">
+  <summary><h2 class="sec">卡什餐饮口碑</h2></summary>
   <div class="sec-sub">评价整理自小红书 · 点击标题跳转原笔记 · 时间为笔记发布日期</div>
   <div class="card rev-card">
     <h3>我的忌口</h3>
     <div class="diet-note">不吃芝士、乳酪与奶制品（奶茶、牛奶冰淇淋例外）；咖啡偏爱美式 &gt; 拿铁。看评价时留意奶类甜品与酱汁。</div>
   </div>
   <div id="revList"></div>
+  </details>
 </section>
 
-<section>
-  <h2 class="sec">卡帕多奇亚餐饮口碑</h2>
+<section id="secRev2">
+  <details class="revg">
+  <summary><h2 class="sec">卡帕多奇亚餐饮口碑</h2></summary>
   <div class="sec-sub">忌口提示见上方 · 点击标题跳转原笔记 · 时间为笔记发布日期</div>
   <div id="revList2"></div>
+  </details>
 </section>
 
-<section>
+<section id="secTodos">
   <h2 class="sec">待办清单</h2>
   <div class="sec-sub">按时间排序 · 办完一项请告知，由我来更新此页</div>
   <div class="card">
@@ -259,7 +296,7 @@ footer a{color:var(--muted);}
   </div>
 </section>
 
-<section>
+<section id="secTips">
   <h2 class="sec">实用贴士</h2>
   <div class="card">
   <ul class="tips">
