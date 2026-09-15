@@ -239,6 +239,7 @@ footer a{color:var(--muted);}
     <li><span class="td-day">出发前</span> 告知帕亚姆酒店 10/8 约 22:00 后入住（☎ <a href="tel:+902428361566">+90 242 836 15 66</a> 或通过预订平台留言）</li>
     <li><span class="td-day">出发前</span> 订内夫谢希尔机场 ↔ 格雷梅接驳（10/12 去程 15:10 落地后、10/14 19:00 回程；月亮酒店可代订）</li>
     <li><span class="td-day">10/8 值机</span> 确认行李直挂到达拉曼</li>
+    <li><span class="td-day">10/8 入住</span> 帕亚姆酒店入住先检查房间：厕所有无反味、有无油漆味，不满意当场要求换房</li>
     <li><span class="td-day">10/9</span> 去卡什车站问清 10/12 早班车时刻 ⚠️ 若只有 6:00 班、车程 2.5–3 小时，对 10:20 航班偏紧——问不到更早班次就当晚预约出租车/拼车</li>
     <li><span class="td-day">10/11 晚</span> 结清帕亚姆酒店账目（次日凌晨出发）</li>
     <li><span class="td-day">10/12–13</span> 通过 LLT TOURISM 或酒店前台订 10/13 老爷车日落行程</li>
@@ -318,6 +319,16 @@ var PLIST=[
  ['卡什','帕亚姆酒店','安迪菲勒斯古剧场','İnceboğaz Çınar 海滩','Dondurma Dükkanı','Oburus Momus','Linckia Roastery Cafe','Bay Köfte','FÜM Smokehouse','Tellina Restaurant','Ege Restaurant Taner Usta','Sushi Kaşhi','Terra decor',"Lily's Corner",'GRATİS KAŞ CD','三角梅'],
  ['卡帕多奇亚','卡帕多奇亚月亮酒店','乌奇希萨尔城堡','Kaira Rooftop','Cappadocia Kebab','Tandır & Restaurant','Restoran Malaysia','Casaba Cafe','Red Red Wine House','LLT TOURISM']
 ];
+/* 各收藏地点距所住酒店的直线距离与方位（自酒店出发的方向） */
+var HOTELDIST={
+ 'Linckia Roastery Cafe':'南 62m','三角梅':'东南 77m','FÜM Smokehouse':'东南 98m',
+ '安迪菲勒斯古剧场':'西 187m','Ege Restaurant Taner Usta':'东北 216m','Dondurma Dükkanı':'东 262m',
+ 'Bay Köfte':'东北 271m','GRATİS KAŞ CD':'东 279m','Terra decor':'东北 336m','Sushi Kaşhi':'东 385m',
+ 'Tellina Restaurant':'东 520m','İnceboğaz Çınar 海滩':'西 1.1km','Oburus Momus':'西 4.0km',
+ 'Kaira Rooftop':'东 428m','Red Red Wine House':'东北 467m','Casaba Cafe':'东北 473m',
+ 'Restoran Malaysia':'东北 527m','Tandır & Restaurant':'东北 741m','LLT TOURISM':'东北 759m',
+ 'Cappadocia Kebab':'东北 1.0km','乌奇希萨尔城堡':'西南 2.2km'
+};
 
 /* 其他地点（无收藏坐标，用名称导航） */
 var Q={
@@ -327,6 +338,7 @@ var Q={
  '内夫谢希尔机场':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Nevşehir Kapadokya Airport'),
  '卡什家乐福':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('CarrefourSA Kaş'),
  '卡什车站':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Kaş Otogar'),
+ 'Kaputaş 海滩':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Kaputaş Beach, Kaş'),
  '卡什小镇':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Kaş, Antalya'),
  '格雷梅小镇':'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent('Göreme, Nevşehir')
 };
@@ -364,25 +376,29 @@ var DAYS=[
   navs:[{label:'达拉曼机场 → 帕亚姆酒店（小巴路线）',stops:['Dalaman Airport','36.1999015,29.636924']}]},
  {n:2,date:'10月9日',dow:'周五',title:'卡什',stay:'夜宿Payam Hotel',
   rows:[
-   {t:'上午',h:'睡到自然醒，卡什小镇逛吃',d:'小镇很小，酒店出门就是主街',loc:'卡什小镇'},
-   {t:'下午',hm:'15:00',h:'顺路去卡什车站',d:'问清 10/12 早班车时刻（待办清单第 8 项）',loc:'卡什车站'},
+   {t:'上午',h:'酒店花园早餐 · 逛东侧主街',d:'早餐 8:00–11:00 供应，花园海景位；吃完往东走就是主街：Dondurma（262m）/ Bay Köfte（271m）/ Terra（336m），随时可回酒店',loc:'卡什小镇'},
+   {t:'午餐',h:'Sushi Kaşhi',d:'卡什最想吃的一家（东385m）：炒面炒饭口碑强，寿司价格偏高',loc:'Sushi Kaşhi'},
+   {t:'下午',hm:'15:00',h:'顺路去卡什车站',d:'问清 10/12 早班车时刻（待办清单第 8 项）；镇中心可坐写 Allugu 的小巴去新车站，60里拉/人',loc:'卡什车站'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'距酒店步行约 4 分钟，往台阶高处坐',loc:'安迪菲勒斯古剧场'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落',d:'西面就是海，光落在剧场石阶上'},
-   {t:'晚上',h:'小镇晚餐',d:'收藏任选：FÜM Smokehouse / Bay Köfte / Tellina…'}
+   {t:'晚上',h:'小镇晚餐',d:'收藏任选：FÜM Smokehouse（98m）/ Bay Köfte（271m）/ Tellina（520m）'}
   ],
-  strip:{icons:['🏨','🚉','🏛','🏨'],names:['帕亚姆酒店','卡什车站','古剧场','回酒店'],subs:['','问早班车','18:00',''],edges:['walk','walk','walk'],hrefs:[navC('帕亚姆酒店'),Q['卡什车站'],navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
+  strip:{icons:['🏨','🍣','🚉','🏛','🏨'],names:['帕亚姆酒店','Sushi Kaşhi','卡什车站','古剧场','回酒店'],subs:['','午餐','问早班车','18:00',''],edges:['walk','walk','walk','walk'],hrefs:[navC('帕亚姆酒店'),navC('Sushi Kaşhi'),Q['卡什车站'],navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
   navs:[{label:'酒店 → 车站 → 古剧场（步行）',stops:['36.1999015,29.636924','Kaş Otogar','36.2000393,29.6348504']}]},
  {n:3,date:'10月10日',dow:'周六',title:'卡什',stay:'夜宿Payam Hotel',
   rows:[
-   {t:'白天',h:'自由活动（留白）',d:'逛吃、拍照，按收藏清单随心情走',loc:'卡什小镇'},
+   {t:'上午',h:'酒店花园早餐 · D400 半日出发',d:'早餐 8:00–11:00；从车站/镇中心坐卡什↔卡尔坎小巴，沿 D400 悬崖海景约 20–25 分钟，跟司机说 Kaputaş 下车',loc:'卡什车站'},
+   {t:'中午',h:'Kaputaş 观景台拍照',d:'明信片机位就在公路边，不用下台阶、不用下水；海滩有厕所，拍完原路坐小巴回卡什（不会游泳，别下水）',loc:'Kaputaş 海滩'},
+   {t:'下午',h:'镇上午饭 · 回酒店休整',d:'午饭后回酒店上个厕所歇一歇，下午随心情逛'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',loc:'安迪菲勒斯古剧场'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落'}
   ],
-  strip:{icons:['🏨','☕','🏛','🏨'],names:['帕亚姆酒店','卡什小镇','古剧场','回酒店'],subs:['','逛吃','18:00',''],edges:['walk','walk','walk'],hrefs:[navC('帕亚姆酒店'),Q['卡什小镇'],navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
-  navs:[{label:'酒店 → 古剧场（步行）',stops:['36.1999015,29.636924','36.2000393,29.6348504']}]},
+  strip:{icons:['🏨','🚌','🏖','🏛','🏨'],names:['帕亚姆酒店','D400·Kaputaş','回镇上','古剧场','回酒店'],subs:['','上午','中午','18:00',''],edges:['bus','bus','walk','walk'],hrefs:[navC('帕亚姆酒店'),Q['Kaputaş 海滩'],Q['卡什小镇'],navC('安迪菲勒斯古剧场'),navC('帕亚姆酒店')]},
+  navs:[{label:'卡什车站 → Kaputaş 海滩（小巴沿 D400）',stops:['Kaş Otogar','Kaputaş Beach']},
+        {label:'酒店 → 古剧场（步行）',stops:['36.1999015,29.636924','36.2000393,29.6348504']}]},
  {n:4,date:'10月11日',dow:'周日',title:'卡什',stay:'夜宿Payam Hotel',
   rows:[
-   {t:'白天',h:'卡什闲逛',d:'购物店随手逛：Terra decor / Lily\'s Corner / GRATİS',loc:'卡什小镇'},
+   {t:'上午',h:'酒店花园早餐 · 购物店随手逛',d:'早餐 8:00–11:00；三家购物店全在酒店东北 271–336m：Terra decor / Lily\'s Corner / GRATİS KAŞ CD',loc:'卡什小镇'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',loc:'安迪菲勒斯古剧场'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落 · 卡什最后一场'},
    {t:'21:30',tz:'TR',hm:'21:30',h:'回酒店早睡',d:'次日凌晨出发，今晚结清账目'}
@@ -400,26 +416,27 @@ var DAYS=[
    {t:'15:30',tz:'TR',hm:'15:30',h:'穿梭小巴去格雷梅',d:'报酒店名和人数，送到酒店门口（建议提前订，约 45–60 分钟）',loc:'内夫谢希尔机场'},
    {t:'≈16:15',tz:'TR',hm:'16:15',h:'月亮酒店入住',loc:'卡帕多奇亚月亮酒店'},
    {t:'17:45',tz:'TR',hm:'17:45',h:'Kaira Rooftop 看日落',d:'屋顶酒吧（16+），步行可达；先到先得好位置',loc:'Kaira Rooftop'},
-   {t:'18:20',tz:'TR',hm:'18:20',h:'日落',d:'若到店晚于 16:30，屋顶日落改到 10/13 傍晚'}
+   {t:'18:20',tz:'TR',hm:'18:20',h:'日落',d:'若到店晚于 16:30，屋顶日落改到 10/13 傍晚'},
+   {t:'晚上',h:'Restoran Malaysia 晚餐',d:'卡帕最想吃的店之一：Kaira 往东北步行约 5 分钟；人均约 50，炒面炒饭是招牌',loc:'Restoran Malaysia'}
   ],
-  strip:{icons:['🏨','🚌','✈','✈','🏨','🌇'],names:['帕亚姆','达拉曼','伊斯坦布尔','内夫谢希尔','月亮酒店','Kaira'],subs:['05:30','10:20','11:22','15:10','≈16:15','17:45'],edges:['bus','air','air','bus','walk'],hrefs:[navC('帕亚姆酒店'),Q['达拉曼机场'],Q['伊斯坦布尔机场'],Q['内夫谢希尔机场'],navC('卡帕多奇亚月亮酒店'),navC('Kaira Rooftop')]},
+  strip:{icons:['🏨','🚌','✈','✈','🏨','🌇','🍽'],names:['帕亚姆','达拉曼','伊斯坦布尔','内夫谢希尔','月亮酒店','Kaira','Malaysia'],subs:['05:30','10:20','11:22','15:10','≈16:15','17:45','≈19:00'],edges:['bus','air','air','bus','walk','walk'],hrefs:[navC('帕亚姆酒店'),Q['达拉曼机场'],Q['伊斯坦布尔机场'],Q['内夫谢希尔机场'],navC('卡帕多奇亚月亮酒店'),navC('Kaira Rooftop'),navC('Restoran Malaysia')]},
   navs:[{label:'卡什车站 → 达拉曼机场（早班车路线）',stops:['Kaş Otogar','Dalaman Airport']},
         {label:'内夫谢希尔机场 → 月亮酒店（穿梭车路线）',stops:['Nevşehir Kapadokya Airport','38.639896,34.8267134']}]},
  {n:6,date:'10月13日',dow:'周二',title:'卡帕多奇亚 · 城堡与老爷车',stay:'夜宿Lunar Cappadocia Hotel',
   rows:[
-   {t:'上午',h:'自然醒 · 格雷梅小镇闲逛',d:'Casaba Cafe 喝杯咖啡，逛逛陶器店',loc:'格雷梅小镇'},
+   {t:'上午',h:'自然醒 · 酒店早餐 · 格雷梅小镇闲逛',d:'酒店早餐后往东北方向逛：Casaba Cafe（473m）喝杯咖啡，逛逛陶器店，店铺群都在酒店东北 430m–1km 一条线上',loc:'格雷梅小镇'},
    {t:'14:00',tz:'TR',hm:'14:00',h:'乌奇希萨尔城堡',d:'打车约 10 分钟；登顶阶梯较陡，可在下方平台看全景，拍照效果同样好',loc:'乌奇希萨尔城堡'},
    {t:'16:30',tz:'TR',hm:'16:30',h:'老爷车接驳出发 · 山谷追日落',d:'提前 1–2 天通过 LLT TOURISM 或酒店前台预订',loc:'LLT TOURISM'},
    {t:'18:20',tz:'TR',hm:'18:20',h:'日落点拍照',d:'山谷风大，带外套'},
-   {t:'≈19:30',tz:'TR',hm:'19:30',h:'回小镇晚餐',d:'Tandır & Restaurant / Cappadocia Kebab'}
+   {t:'≈19:30',tz:'TR',hm:'19:30',h:'回小镇晚餐',d:'Tandır & Restaurant（741m）/ Cappadocia Kebab（1.0km）'}
   ],
   strip:{icons:['🏨','☕','🏰','🚗','🏨'],names:['月亮酒店','格雷梅','乌奇希萨尔','老爷车','回酒店'],subs:['','上午','14:00','16:30','19:30'],edges:['walk','car','car','car'],hrefs:[navC('卡帕多奇亚月亮酒店'),Q['格雷梅小镇'],navC('乌奇希萨尔城堡'),navC('LLT TOURISM'),navC('卡帕多奇亚月亮酒店')]},
   navs:[{label:'月亮酒店 → 乌奇希萨尔城堡（驾车约 10 分钟）',stops:['38.639896,34.8267134','38.6299062,34.805403']}]},
  {n:7,date:'10月14日',dow:'周三',title:'格雷梅返程 · 深夜转机',stay:'机上 / 机场',
   rows:[
-   {t:'上午',h:'睡到自然醒'},
+   {t:'上午',h:'睡到自然醒 · 酒店早餐',d:'卡帕最后一顿酒店早餐；12:00 退房'},
    {t:'12:00',tz:'TR',hm:'12:00',h:'退房 · 行李寄存前台',loc:'卡帕多奇亚月亮酒店'},
-   {t:'下午',h:'格雷梅逛吃',d:'Restoran Malaysia / 冰淇淋店…走之前最后扫一圈',loc:'格雷梅小镇'},
+   {t:'下午',h:'格雷梅逛吃',d:'Restoran Malaysia（527m）可二刷 / 冰淇淋店…走之前最后扫一圈',loc:'格雷梅小镇'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'回酒店取行李',loc:'卡帕多奇亚月亮酒店'},
    {t:'19:00',tz:'TR',hm:'19:00',h:'机场接驳出发（提前订）',loc:'卡帕多奇亚月亮酒店'},
    {t:'21:10',tz:'TR',hm:'21:10',h:'TK2009 起飞 → 伊斯坦布尔'},
@@ -724,6 +741,7 @@ function dayStrip(day){
     for(var i=1;i<grp.length;i++){
       var nm=grp[i];
       h+='<a class="chip" style="margin-right:10px" target="_blank" rel="noopener" href="'+navC(nm)+'">'+esc(nm)+' <span style="opacity:.6">· '+PTAG[nm]+'</span></a>';
+      if(HOTELDIST[nm])h+='<span class="dist" style="display:inline-block;font-size:11px;opacity:.5;margin:-2px 6px 0 -8px">距酒店'+esc(HOTELDIST[nm])+'</span>';
     }
     h+='</div>';
   });
