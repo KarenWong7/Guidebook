@@ -133,8 +133,17 @@ a.chip{
 }
 a.chip::before{content:"📍 ";}
 
+/* ---------- 收藏速查 ---------- */
+.spd-grid{display:grid;grid-template-columns:1fr;}
+@media(min-width:560px){.spd-grid{grid-template-columns:1fr 1fr;column-gap:22px;}}
+.spd-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 7px;padding:5px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+.spd-name{color:var(--ink);font-weight:600;text-decoration:none;}
+.spd-tag{color:var(--muted);font-size:10px;border:1px solid var(--line);border-radius:6px;padding:0 5px;}
+.spd-dist{margin-left:auto;color:var(--muted);font-size:11px;white-space:nowrap;}
+
 /* ---------- 小红书口碑 ---------- */
-.rev-card h3{font-weight:700; font-size:16px; margin-bottom:2px;}
+.rev-card h3{display:flex; flex-wrap:wrap; align-items:baseline; font-weight:700; font-size:16px; margin-bottom:2px;}
+.rev-card .rv-dist{margin-left:auto; font-size:11px; font-weight:400; color:var(--muted);}
 .rev-card .rv-tag{font-size:11px; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:0 5px; margin-left:6px; vertical-align:2px;}
 .good-head{color:var(--accent); font-size:12px; font-weight:600; margin-top:8px;}
 .bad-head{color:var(--bad); font-size:12px; font-weight:600; margin-top:8px;}
@@ -739,12 +748,15 @@ function dayStrip(day){
   var h='';
   PLIST.forEach(function(grp){
     h+='<div class="card"><h3 style="font-weight:700;font-size:16px;margin-bottom:6px">'+grp[0]+'</h3>';
+    h+='<div class="spd-grid">';
     for(var i=1;i<grp.length;i++){
       var nm=grp[i];
-      h+='<a class="chip" style="margin-right:10px" target="_blank" rel="noopener" href="'+navC(nm)+'">'+esc(nm)+' <span style="opacity:.6">· '+PTAG[nm]+'</span></a>';
-      if(HOTELDIST[nm])h+='<span class="dist" style="display:inline-block;font-size:11px;opacity:.5;margin:-2px 6px 0 -8px">距酒店'+esc(HOTELDIST[nm])+'</span>';
+      h+='<div class="spd-row"><a class="spd-name" target="_blank" rel="noopener" href="'+navC(nm)+'">'+esc(nm)+'</a>';
+      h+='<span class="spd-tag">'+PTAG[nm]+'</span>';
+      if(HOTELDIST[nm])h+='<span class="spd-dist">距酒店 '+esc(HOTELDIST[nm])+'</span>';
+      h+='</div>';
     }
-    h+='</div>';
+    h+='</div></div>';
   });
   document.getElementById('speedList').innerHTML=h;
 })();
@@ -859,7 +871,9 @@ var MIXES2=[
  ['格蕾梅已吃，餐厅红黑榜造福同胞','2026-09',32,XHS+'6aa3eab5000000002802af2f?xsec_token=ABMef_7FeZqytR87rzsmCbHriCJDMLiXm8dhI-8Q2-PEU=&xsec_source=']
 ];
 function revCardHTML(rv){
-  var h='<div class="card rev-card"><h3>'+esc(rv.n)+'<span class="rv-tag">'+rv.tag+'</span></h3>';
+  var h='<div class="card rev-card"><h3>'+esc(rv.n)+'<span class="rv-tag">'+rv.tag+'</span>';
+  if(HOTELDIST[rv.n])h+='<span class="rv-dist">距酒店 '+esc(HOTELDIST[rv.n])+'</span>';
+  h+='</h3>';
   if(rv.good.length){
     h+='<div class="good-head">好评</div><ul class="rev-list good">';
     rv.good.forEach(function(g){
