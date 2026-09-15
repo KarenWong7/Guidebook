@@ -45,6 +45,8 @@ body{
   border-radius:99px; padding:4px 12px; white-space:nowrap; text-decoration:none;
 }
 #topnav a:active{color:var(--accent); border-color:var(--accent);}
+#topnav a.on{background:var(--accent); border-color:var(--accent); color:#fff;}
+[data-theme=dark] #topnav a.on{color:#0f171c;}
 #nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secTodos,#secTips{scroll-margin-top:56px;}
 
 /* ---------- 头部 ---------- */
@@ -783,6 +785,20 @@ function dayStrip(day){
     h+='</div></details>';
   });
   document.getElementById('days').innerHTML=h;
+})();
+
+/* ================= 导航滚动高亮 ================= */
+(function(){
+  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secTodos','secTips'];
+  var nav=document.getElementById('topnav'), links={}, els={};
+  ids.forEach(function(id){links[id]=nav.querySelector('a[href="#'+id+'"]'); els[id]=document.getElementById(id);});
+  function onScroll(){
+    var y=window.scrollY+64, cur='nowCard';
+    ids.forEach(function(id){if(els[id]&&els[id].offsetTop<=y)cur=id;});
+    for(var id in links)links[id].classList.toggle('on',id===cur);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
 })();
 
 /* ================= 收藏速查 ================= */
