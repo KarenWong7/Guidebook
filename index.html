@@ -742,7 +742,7 @@ applyTheme();setInterval(applyTheme,60000);
     h+='<div class="tl">';
     day.rows.forEach(function(r){
       h+='<div class="row" style="display:contents">';
-      h+='<div class="t">'+(r.t.indexOf('≈')===0?'<span class="amp">≈</span>'+esc(r.t.slice(1)):esc(r.t));
+      h+='<div class="t">'+((r.t.indexOf('≈')===0?'<span class="amp">≈</span>'+esc(r.t.slice(1)):esc(r.t)).replace(/\/(\d)/g,'<br>或$1'));
       if(r.tz)h+=' <span class="tzchip" style="display:inline-block;margin-top:2px">'+r.tz+'</span>';
       h+='</div>';
       h+='<div class="c"><h4>'+esc(r.h)+'</h4>';
