@@ -149,6 +149,8 @@ a.navbtn:active{transform:scale(.97);}
 .tl .c{padding-left:10px; border-left:2px solid var(--line); margin-left:4px; padding-bottom:14px;}
 .tl .c h4{font-size:15px; font-weight:600;}
 .tl .c p{font-size:13px; color:var(--muted); margin-top:2px;}
+.tl .intr{font-size:12.5px; color:var(--muted); background:var(--tint); border-radius:8px; padding:6px 8px; margin-top:6px; line-height:1.55;}
+.tl .intr .intr-src{display:inline-block; font-size:10.5px; color:var(--accent); border:1px solid var(--line); border-radius:4px; padding:0 5px; margin-left:6px; vertical-align:1px;}
 .tl .row:last-child .c{border-left-color:transparent;}
 a.chip{
   display:inline-block; font-size:12px; color:var(--accent); text-decoration:none;
@@ -434,7 +436,7 @@ var DAYS=[
    {t:'午餐',h:'Sushi Kaşhi',d:'卡什最想吃的一家（东385m）：炒面炒饭口碑强，寿司价格偏高',loc:'Sushi Kaşhi'},
    {t:'下午',hm:'15:00',h:'顺路去卡什车站',d:'问清 10/12 早班车时刻（待办清单第 8 项）；镇中心可坐写 Allugu 的小巴去新车站，60里拉/人',loc:'卡什车站'},
    {t:'傍晚前',h:'回镇上闲逛',d:'顺路选项：Linckia（62m）再来一杯 / Dondurma 冰淇淋（262m）/ GRATİS KAŞ CD（279m）'},
-   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'距酒店步行约 4 分钟，往台阶高处坐',loc:'安迪菲勒斯古剧场'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'距酒店步行约 4 分钟，往台阶高处坐',loc:'安迪菲勒斯古剧场',intro:'卡什古称安迪菲勒斯（Antiphellus），是利西亚古国的一座海滨城邦。剧场建于希腊化时期，依山开凿、面向地中海，可容纳约 4000 名观众；经修复后仍大体完整，且从未建有永久性石砌舞台。剧场周边还有公元前 4 世纪的多立克式墓、崖壁岩墓等遗迹。'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落',d:'西面就是海，光落在剧场石阶上'},
    {t:'晚上',h:'小镇晚餐',d:'收藏任选：FÜM Smokehouse（98m）/ Bay Köfte（271m）/ Tellina（520m）'}
   ],
@@ -442,7 +444,7 @@ var DAYS=[
  {n:3,date:'10月10日',dow:'周六',title:'卡什',stay:'夜宿Payam Hotel',
   rows:[
    {t:'10:30',tz:'TR',hm:'10:30',h:'小巴出发 → Kaputaş（酒店早餐后）',d:'早餐 8:00–11:00；步行约450m到 Atatürk Blv-2 上车点；车费90里拉/人·只收现金；去程坐左侧看海，约30分钟，跟司机说 Kaputaş 下车',loc:'卡什小巴上车点'},
-   {t:'11:00',tz:'TR',hm:'11:00',h:'Kaputaş 海滩两小时',d:'先路边观景台拍照（免费；正午10–14点海水最蓝，悬崖边无护栏注意安全）→ 下台阶（约187级）去海滩躺躺（门票60里拉、躺椅300里拉，只收卡不收现金）→ 爬台阶回来路边等车',loc:'Kaputaş 海滩'},
+   {t:'11:00',tz:'TR',hm:'11:00',h:'Kaputaş 海滩两小时',d:'先路边观景台拍照（免费；正午10–14点海水最蓝，悬崖边无护栏注意安全）→ 下台阶（约187级）去海滩躺躺（门票60里拉、躺椅300里拉，只收卡不收现金）→ 爬台阶回来路边等车',loc:'Kaputaş 海滩',intro:'Kaputaş 海滩位于卡什与卡尔坎之间的 D400 海岸公路旁，是夹在两座峭壁之间的峡谷口海滩。地下水从沙滩下渗出汇入海中，海水常年清凉、呈标志性的绿松石色。自公路下 187 级台阶抵达，是土耳其重点对外推介的旅游目的地之一。'},
    {t:'13:25',tz:'TR',hm:'13:25',h:'回程小巴 → 卡什',d:'售票处旁跟大部队等车，确认到 Kaş 再上；回程坐右侧看海；没赶上就等 14:05'},
    {t:'午餐',h:'镇上午餐',d:'回到卡什约 13:55；收藏任选：FÜM（98m）/ Ege（216m）/ Tellina（520m）',loc:'FÜM Smokehouse'},
    {t:'下午',h:'回酒店休整',d:'回酒店上个厕所歇一歇；闲逛选项：Linckia（62m）/ Dondurma 冰淇淋（262m）/ Terra decor（336m）'},
@@ -481,7 +483,7 @@ var DAYS=[
   rows:[
    {t:'上午',h:'自然醒 · 酒店早餐吃饱',d:'早午饭合并吃一顿足的（乌奇希萨尔路上不专门安排午餐）；饭后回房稍作休息，出发前步行约 7 分钟到巴士站',loc:'格雷梅小镇'},
    {t:'11:00/11:30',tz:'TR',hm:'11:00',h:'Göreme Public Bus 乘巴士去乌奇希萨尔',d:'70 里拉/人，车程约 10 分钟；11:00 与 11:30 两班任选',loc:'Göreme Public Bus'},
-   {t:'11:10/11:40',h:'抵达乌奇希萨尔 · 城堡下方平台看全景',d:'不登顶、不买门票；乌奇希萨尔是卡帕制高点，远眺格雷梅全景',loc:'乌奇希萨尔城堡'},
+   {t:'11:10/11:40',h:'抵达乌奇希萨尔 · 城堡下方平台看全景',d:'不登顶、不买门票；乌奇希萨尔是卡帕制高点，远眺格雷梅全景',loc:'乌奇希萨尔城堡',intro:'乌奇希萨尔（Uçhisar）在土耳其语中意为「外城」，是卡帕多奇亚地势最高的聚落。城堡以镇中央的巨型天然岩锥开凿而成，岩体内遍布房间、隧道与鸽舍；居住史可上溯至罗马—拜占庭时期，17 世纪中叶曾有修士聚居，此后长期用作防御瞭望。登顶可 360° 俯瞰格雷梅全景。'},
    {t:'13:40/14:10',tz:'TR',hm:'13:40',h:'返程巴士回格雷梅',d:'⚠️ 返程上车点不在来时的下车点：从城堡步行约 700 米（10 分钟出头）到 Kapadokya Onyx 礼品店附近的车站等车；70 里拉/人，预留好步行时间',loc:'Kapadokya Onyx',xhs:'https://www.xiaohongshu.com/discovery/item/69d29893000000001d01e6f8?xsec_token=ABzHU0vtO1efhWX9TxO-t5TNZY7YoFwplZI8xZuV1GDwY=&xsec_source=pc_share',xhst:'上车点笔记'},
    {t:'下午',h:'回酒店休整 · 顺路垫垫肚子',d:'巴士站回酒店路上二选一：Casaba Cafe（东北473m，巴士站旁，可坐下吃汉堡/意面）或 Coffee Art（东北625m，三奶蛋糕300里拉）；吃饱回房睡一觉，为老爷车蓄力',loc:'格雷梅小镇'},
    {t:'16:30',tz:'TR',hm:'16:30',h:'旅行社接人 · 老爷车追日落',d:'日落班约 2 小时（接人时间订车时确认，约日落前 1.5–2 小时）：车到酒店接（有的社先到 office 换乘老爷车）→ 3 个拍照点 → 玫瑰谷看日落 → 送回酒店；选红色老爷车最出片；司机可帮拍照；山谷风大带外套',loc:'卡帕多奇亚月亮酒店'},
@@ -755,6 +757,7 @@ applyTheme();setInterval(applyTheme,60000);
         else h+='<span class="chip">'+esc(r.loc)+'</span>';
       }
       if(r.xhs)h+='<a class="chip" target="_blank" rel="noopener" href="'+r.xhs+'">📕 '+esc(r.xhst||'笔记')+'</a>';
+      if(r.intro)h+='<div class="intr">📖 '+esc(r.intro)+'<span class="intr-src">'+esc(r.introsrc||'维基百科')+'</span></div>';
       h+='</div></div>';
     });
     h+='</div></details>';
