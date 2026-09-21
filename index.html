@@ -355,7 +355,8 @@ var P={
  'Red Red Wine House':[38.6429946,34.8303485],
  'LLT TOURISM':[38.6455718,34.8315639],
  'Göreme Public Bus':[38.643752,34.829349],
- 'Kapadokya Onyx':[38.6309184,34.7975241]
+ 'Kapadokya Onyx':[38.6309184,34.7975241],
+ 'Coffee Art':[38.6437503,34.8319465]
 };
 var PTAG={
  '帕亚姆酒店':'住','卡什小巴上车点':'上车点','安迪菲勒斯古剧场':'日落','İnceboğaz Çınar 海滩':'海滩',
@@ -366,11 +367,11 @@ var PTAG={
  '卡帕多奇亚月亮酒店':'住','乌奇希萨尔城堡':'景点','Kaira Rooftop':'日落·餐厅',
  'Göreme Public Bus':'上车点','Kapadokya Onyx':'特殊上车点',
  'Cappadocia Kebab':'餐厅','Tandır & Restaurant':'餐厅','Restoran Malaysia':'餐厅',
- 'Casaba Cafe':'咖啡','Red Red Wine House':'酒吧','LLT TOURISM':'旅行社'
+ 'Casaba Cafe':'咖啡','Coffee Art':'甜品','Red Red Wine House':'酒吧','LLT TOURISM':'旅行社'
 };
 var PLIST=[
  ['卡什','帕亚姆酒店','卡什小巴上车点','安迪菲勒斯古剧场','İnceboğaz Çınar 海滩','Dondurma Dükkanı','Oburus Momus','Linckia Roastery Cafe','Bay Köfte','FÜM Smokehouse','Tellina Restaurant','Ege Restaurant Taner Usta','Sushi Kaşhi','Terra decor',"Lily's Corner",'GRATİS KAŞ CD','三角梅'],
- ['卡帕多奇亚','卡帕多奇亚月亮酒店','乌奇希萨尔城堡','Göreme Public Bus','Kapadokya Onyx','Kaira Rooftop','Cappadocia Kebab','Tandır & Restaurant','Restoran Malaysia','Casaba Cafe','Red Red Wine House','LLT TOURISM']
+ ['卡帕多奇亚','卡帕多奇亚月亮酒店','乌奇希萨尔城堡','Göreme Public Bus','Kapadokya Onyx','Kaira Rooftop','Cappadocia Kebab','Tandır & Restaurant','Restoran Malaysia','Casaba Cafe','Coffee Art','Red Red Wine House','LLT TOURISM']
 ];
 /* 各收藏地点距所住酒店的直线距离与方位（自酒店出发的方向） */
 var HOTELDIST={
@@ -380,7 +381,7 @@ var HOTELDIST={
  '卡什小巴上车点':'北约415m',
  'Tellina Restaurant':'东 520m','İnceboğaz Çınar 海滩':'西 1.1km','Oburus Momus':'西 4.0km',
  'Kaira Rooftop':'东 428m','Red Red Wine House':'东北 467m','Casaba Cafe':'东北 473m',
- 'Göreme Public Bus':'东北 486m',
+ 'Göreme Public Bus':'东北 486m','Coffee Art':'东北 625m',
  'Restoran Malaysia':'东北 527m','Tandır & Restaurant':'东北 741m','LLT TOURISM':'东北 759m',
  'Cappadocia Kebab':'东北 1.0km','乌奇希萨尔城堡':'西南 2.2km','Kapadokya Onyx':'西 2.7km'
 };
@@ -482,7 +483,7 @@ var DAYS=[
    {t:'11:00/11:30',tz:'TR',hm:'11:00',h:'Göreme Public Bus 乘巴士去乌奇希萨尔',d:'70 里拉/人，车程约 10 分钟；11:00 与 11:30 两班任选',loc:'Göreme Public Bus'},
    {t:'11:10/11:40',h:'抵达乌奇希萨尔 · 城堡下方平台看全景',d:'不登顶、不买门票；乌奇希萨尔是卡帕制高点，远眺格雷梅全景',loc:'乌奇希萨尔城堡'},
    {t:'13:40/14:10',tz:'TR',hm:'13:40',h:'返程巴士回格雷梅',d:'⚠️ 返程上车点不在来时的下车点：到 Kapadokya Onyx 礼品店附近的车站等车；70 里拉/人',loc:'Kapadokya Onyx',xhs:'https://www.xiaohongshu.com/discovery/item/69d29893000000001d01e6f8?xsec_token=ABzHU0vtO1efhWX9TxO-t5TNZY7YoFwplZI8xZuV1GDwY=&xsec_source=pc_share',xhst:'上车点笔记'},
-   {t:'下午',h:'回酒店休整',d:'睡一觉、充充电，为傍晚老爷车蓄力',loc:'卡帕多奇亚月亮酒店'},
+   {t:'下午',h:'回酒店休整 · 顺路垫垫肚子',d:'巴士站回酒店路上二选一：Casaba Cafe（东北473m，巴士站旁，可坐下吃汉堡薯条）或 Coffee Art（东北625m，三奶蛋糕300里拉）；吃饱回房睡一觉，为老爷车蓄力',loc:'格雷梅小镇'},
    {t:'16:30',tz:'TR',hm:'16:30',h:'旅行社接人 · 老爷车追日落',d:'日落班约 2 小时（接人时间订车时确认，约日落前 1.5–2 小时）：车到酒店接（有的社先到 office 换乘老爷车）→ 3 个拍照点 → 玫瑰谷看日落 → 送回酒店；选红色老爷车最出片；司机可帮拍照；山谷风大带外套',loc:'卡帕多奇亚月亮酒店'},
    {t:'18:20',tz:'TR',hm:'18:20',h:'日落点拍照',d:'山谷风大，带外套'},
    {t:'≈19:30',tz:'TR',hm:'19:30',h:'回小镇晚餐',d:'Tandır & Restaurant（741m）/ Cappadocia Kebab（1.0km）；饭后若没赶上昨晚 Kaira 就去 Kaira（428m）看夜景，否则去 Red Red Wine House（467m）热红酒听现场弹唱'}
@@ -873,6 +874,10 @@ var REVIEWS2=[
   good:[['我称之为格雷梅No.1餐厅：汉堡肉多多、薯条惊艳，本地人排队','2026-04',432,XHS+'69dbd5a3000000001a03641b?xsec_token=ABpBMFJb2WuA3znNZ8f4EnpyrTHCGiho5_HNnm7qBxG58=&xsec_source=pc_share']],
   bad:[['（合集）避雷与推荐帖：牛肉不新鲜像冷冻肥牛卷，薯条软趴趴且是半成品','2026-06',152,XHS+'6a37f823000000001c02404c?xsec_token=ABEt-qmPP5OWmD6UTj4KMBZjdN0W1Sua3cKOfmw5ArvUI=&xsec_source=pc_share']],
   note:'口碑两极（432赞夸爆薯条 vs 152赞说薯条是半成品）；奶油意面酱多多是招牌但忌口；门口有个撅屁屁托菜单的小人，好找。'},
+ {n:'Coffee Art',tag:'甜品',
+  good:[['路过橱窗被三奶蛋糕吸引：一口封神，三分钟吃完飞速又点第二块（300 里拉/块）','2026-04',95,XHS+'69d662c9000000001a020101?xsec_token=ABDgwoWHqUW9JPTzp5Td774NmTCl27muzI6eqfRg9sDWo=&xsec_source=pc_share']],
+  bad:[],
+  note:'你不太爱甜品，买一块试试就好；三奶蛋糕奶味重（忌口自酌）；土耳其甜品普遍偏甜。'},
  {n:'Tandır & Restaurant',tag:'餐厅',
   good:[['卡帕多奇亚格雷梅吃到第一好吃的饭店：蘑菇炖牛肉+西红柿鸡蛋，人均80元','2026-06',43,XHS+'6a38d99a000000001c025f0b?xsec_token=ABHp9hlT0s4IrzBOBWZJ7261_p_gjRqbM-dq4yF1LPNQ4=&xsec_source=pc_share']],
   bad:[['点评帖：不踩雷但也谈不上好吃，分量少、上菜慢，水收费、沙拉吃不惯','2026-08',7,XHS+'6a86ab36000000002a02d8c0?xsec_token=ABbV__dXwR8m9N7yqfsqU5CuCF6iBSdZd-1CrSkDvwbY0=&xsec_source=pc_share']],
