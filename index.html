@@ -255,7 +255,7 @@ footer a{color:var(--muted);}
   <div id="days"></div>
 
   <h2 class="sec" id="secSpeed">收藏地点速查</h2>
-  <div class="sec-sub">24 处收藏全部在此 · 点击直接导航</div>
+  <div class="sec-sub" id="speedSub">收藏全部在此 · 点击直接导航</div>
   <div id="speedList"></div>
 </section>
 
@@ -798,8 +798,8 @@ applyTheme();setInterval(applyTheme,60000);
 
 /* ================= 收藏速查 ================= */
 (function(){
-  var h='';
-  PLIST.forEach(function(grp){
+  var h='', total=0;
+  PLIST.forEach(function(grp){total+=grp.length-1;
     h+='<div class="card"><h3 style="font-weight:700;font-size:16px;margin-bottom:6px">'+grp[0]+'</h3>';
     h+='<div class="spd-grid">';
     for(var i=1;i<grp.length;i++){
@@ -812,6 +812,7 @@ applyTheme();setInterval(applyTheme,60000);
     h+='</div></div>';
   });
   document.getElementById('speedList').innerHTML=h;
+  document.getElementById('speedSub').textContent=total+' 处收藏全部在此 · 点击直接导航';
 })();
 
 /* ================= 卡什餐饮小红书口碑 ================= */
