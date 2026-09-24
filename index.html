@@ -368,6 +368,8 @@ var P={
  'Göreme Public Bus':[38.643752,34.829349],
  'Kapadokya Onyx':[38.6309184,34.7975241],
  'Coffee Art':[38.6437503,34.8319465],
+ 'Elegant Gift Shop':[38.6441952,34.832399],
+ 'Seven Brothers Carpet':[38.6440203,34.8323251],
  '观景台（Sunset & Sunrise / Balloon Viewpoint）':[38.641501,34.8320718]
 };
 var PTAG={
@@ -380,11 +382,12 @@ var PTAG={
  '观景台（Sunset & Sunrise / Balloon Viewpoint）':'观景台',
  'Göreme Public Bus':'上车点','Kapadokya Onyx':'特殊上车点',
  'Cappadocia Kebab':'餐厅','Tandır & Restaurant':'餐厅','Restoran Malaysia':'餐厅',
- 'Casaba Cafe':'咖啡','Coffee Art':'甜品','Red Red Wine House':'酒吧','LLT TOURISM':'旅行社'
+ 'Casaba Cafe':'咖啡','Coffee Art':'甜品','Red Red Wine House':'酒吧','LLT TOURISM':'旅行社',
+ 'Elegant Gift Shop':'购物','Seven Brothers Carpet':'购物'
 };
 var PLIST=[
  ['卡什','帕亚姆酒店','卡什小巴上车点','安迪菲勒斯古剧场','İnceboğaz Çınar 海滩','Dondurma Dükkanı','Oburus Momus','Linckia Roastery Cafe','Bay Köfte','FÜM Smokehouse','Tellina Restaurant','Ege Restaurant Taner Usta','Sushi Kaşhi','Terra decor',"Lily's Corner",'GRATİS KAŞ CD','三角梅'],
- ['卡帕多奇亚','卡帕多奇亚月亮酒店','乌奇希萨尔城堡','Göreme Public Bus','Kapadokya Onyx','Kaira Rooftop','观景台（Sunset & Sunrise / Balloon Viewpoint）','Cappadocia Kebab','Tandır & Restaurant','Restoran Malaysia','Casaba Cafe','Coffee Art','Red Red Wine House','LLT TOURISM']
+ ['卡帕多奇亚','卡帕多奇亚月亮酒店','乌奇希萨尔城堡','Göreme Public Bus','Kapadokya Onyx','Kaira Rooftop','观景台（Sunset & Sunrise / Balloon Viewpoint）','Cappadocia Kebab','Tandır & Restaurant','Restoran Malaysia','Casaba Cafe','Coffee Art','Elegant Gift Shop','Seven Brothers Carpet','Red Red Wine House','LLT TOURISM']
 ];
 /* 各收藏地点距所住酒店的直线距离与方位（自酒店出发的方向） */
 var HOTELDIST={
@@ -394,7 +397,7 @@ var HOTELDIST={
  '卡什小巴上车点':'北约415m',
  'Tellina Restaurant':'东 520m','İnceboğaz Çınar 海滩':'西 1.1km','Oburus Momus':'西 4.0km',
  'Kaira Rooftop':'东 428m','观景台（Sunset & Sunrise / Balloon Viewpoint）':'东 498m','Red Red Wine House':'东北 467m','Casaba Cafe':'东北 473m',
- 'Göreme Public Bus':'东北 486m','Coffee Art':'东北 625m',
+ 'Göreme Public Bus':'东北 486m','Coffee Art':'东北 625m','Elegant Gift Shop':'东北 687m','Seven Brothers Carpet':'东北 669m',
  'Restoran Malaysia':'东北 527m','Tandır & Restaurant':'东北 741m','LLT TOURISM':'东北 759m',
  'Cappadocia Kebab':'东北 1.0km','乌奇希萨尔城堡':'西南 2.2km','Kapadokya Onyx':'西 2.7km'
 };
@@ -466,11 +469,11 @@ var DAYS=[
         {label:'酒店 → Momus（打车）',stops:['36.1999015,29.636924','36.1937233,29.5933455']}]},
  {n:4,date:'10月11日',dow:'周日',title:'卡什',stay:'夜宿Payam Hotel',
   rows:[
-   {t:'上午',h:'酒店早餐 · 三角梅拍照 · 购物店随手逛',d:'早餐 8:00–11:00；先到三角梅（东南77m）拍照，再逛两家购物店 Terra decor / GRATİS KAŞ CD（东北 279–336m），Lily\'s Corner 餐厅可顺带简餐',loc:'卡什小镇'},
+   {t:'上午',h:'酒店早餐 · 三角梅拍照 · 购物店随手逛',d:'早餐 8:00–11:00；先到三角梅（东南77m）拍照，再逛两家购物店：Terra decor（东北336m，蓝白咖啡杯/浮雕瓷砖画/陶瓷冰箱贴，易碎免费气泡膜包装）+ GRATİS KAŞ CD（东北279m，红字护发精油149.5里拉、Otacı 玫瑰水259里拉——格雷梅周边无 Gratis，要在卡什买齐）；Lily\'s Corner 餐厅可顺带简餐',loc:'卡什小镇'},
    {t:'午餐',h:'Bay Köfte',d:'距酒店东北 271m',loc:'Bay Köfte'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',loc:'安迪菲勒斯古剧场'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落 · 卡什最后一场'},
-   {t:'晚上',h:'卡什最后一顿晚餐',d:'从收藏里挑还没吃过的：Ege（216m）/ FÜM（98m）/ Tellina（520m）'},
+   {t:'晚上',h:'卡什最后一顿晚餐',d:'从收藏里挑还没吃过的：Ege（216m）/ FÜM（98m）/ Tellina（520m）；饭后码头附近巷子有手作集市（首饰+非义乌风冰箱贴），可顺路一逛'},
    {t:'21:30',tz:'TR',hm:'21:30',h:'回酒店早睡',d:'次日凌晨出发，今晚结清账目'}
   ],
   navs:[{label:'酒店 → 古剧场（步行）',stops:['36.1999015,29.636924','36.2000393,29.6348504']}]},
@@ -495,24 +498,26 @@ var DAYS=[
   rows:[
    {t:'上午',h:'自然醒 · 酒店早餐吃饱',d:'早午饭合并吃一顿足的（乌奇希萨尔路上不专门安排午餐）；饭后回房稍作休息，出发前步行约 7 分钟到巴士站',loc:'格雷梅小镇'},
    {t:'11:00/11:30',tz:'TR',hm:'11:00',h:'Göreme Public Bus 乘巴士去乌奇希萨尔',d:'70 里拉/人，车程约 10 分钟；11:00 与 11:30 两班任选',loc:'Göreme Public Bus'},
-   {t:'11:10/11:40',h:'抵达乌奇希萨尔 · 城堡下方平台看全景',d:'不登顶、不买门票；乌奇希萨尔是卡帕制高点，远眺格雷梅全景',loc:'乌奇希萨尔城堡',intro:'乌奇希萨尔（Uçhisar）在土耳其语中意为「外城」，是卡帕多奇亚地势最高的聚落。城堡以镇中央的巨型天然岩锥开凿而成，岩体内遍布房间、隧道与鸽舍；居住史可上溯至罗马—拜占庭时期，17 世纪中叶曾有修士聚居，此后长期用作防御瞭望。登顶可 360° 俯瞰格雷梅全景。'},
-   {t:'13:40/14:10',tz:'TR',hm:'13:40',h:'返程巴士回格雷梅',d:'⚠️ 返程上车点不在来时的下车点：从城堡步行约 700 米（10 分钟出头）到 Kapadokya Onyx 礼品店附近的车站等车；70 里拉/人，预留好步行时间',loc:'Kapadokya Onyx',xhs:'https://www.xiaohongshu.com/discovery/item/69d29893000000001d01e6f8?xsec_token=ABzHU0vtO1efhWX9TxO-t5TNZY7YoFwplZI8xZuV1GDwY=&xsec_source=pc_share',xhst:'上车点笔记'},
+   {t:'11:10/11:40',h:'抵达乌奇希萨尔 · 城堡下方平台看全景',d:'不登顶、不买门票；乌奇希萨尔是卡帕制高点，远眺格雷梅全景；城堡售票处对面斜坡第一家是石雕店（老板捡城堡石头手雕冰箱贴200里拉/摆件），可顺路看看',loc:'乌奇希萨尔城堡',intro:'乌奇希萨尔（Uçhisar）在土耳其语中意为「外城」，是卡帕多奇亚地势最高的聚落。城堡以镇中央的巨型天然岩锥开凿而成，岩体内遍布房间、隧道与鸽舍；居住史可上溯至罗马—拜占庭时期，17 世纪中叶曾有修士聚居，此后长期用作防御瞭望。登顶可 360° 俯瞰格雷梅全景。'},
+   {t:'13:40/14:10',tz:'TR',hm:'13:40',h:'返程巴士回格雷梅',d:'⚠️ 返程上车点不在来时的下车点：从城堡步行约 700 米（10 分钟出头）到 Kapadokya Onyx 礼品店附近的车站等车（等车可逛逛石雕礼品）；70 里拉/人，预留好步行时间',loc:'Kapadokya Onyx',xhs:'https://www.xiaohongshu.com/discovery/item/69d29893000000001d01e6f8?xsec_token=ABzHU0vtO1efhWX9TxO-t5TNZY7YoFwplZI8xZuV1GDwY=&xsec_source=pc_share',xhst:'上车点笔记'},
    {t:'下午',h:'回酒店休整 · 顺路垫垫肚子',d:'巴士站回酒店路上二选一：Casaba Cafe（东北473m，巴士站旁，可坐下吃汉堡/意面）或 Coffee Art（东北625m，三奶蛋糕300里拉）；吃饱回房睡一觉，为老爷车蓄力',loc:'格雷梅小镇'},
    {t:'16:30',tz:'TR',hm:'16:30',h:'旅行社接人 · 老爷车追日落',d:'日落班约 2 小时（接人时间订车时确认，约日落前 1.5–2 小时）：车到酒店接（有的社先到 office 换乘老爷车）→ 3 个拍照点 → 玫瑰谷看日落 → 送回酒店；选红色老爷车最出片；司机可帮拍照；山谷风大带外套',loc:'卡帕多奇亚月亮酒店'},
    {t:'18:20',tz:'TR',hm:'18:20',h:'日落点拍照',d:'山谷风大，带外套'},
-   {t:'≈19:30',tz:'TR',hm:'19:30',h:'回小镇晚餐',d:'Tandır & Restaurant（741m）/ Cappadocia Kebab（1.0km）；饭后若没赶上昨晚 Kaira 就去 Kaira（428m）看夜景，否则去 Red Red Wine House（467m）喝热红酒'}
+   {t:'≈19:30',tz:'TR',hm:'19:30',h:'回小镇晚餐',d:'Tandır & Restaurant（741m）/ Cappadocia Kebab（1.0km）'},
+   {t:'≈20:45',tz:'TR',hm:'20:45',h:'逛伴手礼店 · Elegant + Seven Brothers（两店相邻）',d:'热气球挂件免费刻字DIY/冰箱贴/羊毛皂@Elegant Gift Shop；小地毯垫150里拉（当鼠标垫/装框挂画）@Seven Brothers Carpet；主街顺路可看 Trz Market 浮雕红酒、潘多拉店（热气球charm 70欧）',loc:'Elegant Gift Shop'},
+   {t:'≈21:30',tz:'TR',hm:'21:30',h:'饭后一杯看夜景',d:'没赶上昨晚 Kaira 日落 → Kaira（428m）喝一杯看夜景；否则 Red Red Wine House（467m）热红酒',loc:'Kaira Rooftop'}
   ],
   navs:[{label:'月亮酒店 → Göreme Public Bus 巴士站（步行约 7 分钟）',stops:['38.639896,34.8267134','38.643752,34.829349']}]},
  {n:7,date:'10月14日',dow:'周三',title:'格雷梅返程 · 深夜转机',stay:'机上 / 机场',
   rows:[
    {t:'上午',h:'睡到自然醒 · 酒店早餐',d:'卡帕最后一顿酒店早餐；12:00 退房'},
    {t:'12:00',tz:'TR',hm:'12:00',h:'退房 · 行李寄存前台',loc:'卡帕多奇亚月亮酒店'},
-   {t:'下午',h:'格雷梅逛吃',d:'午餐：Restoran Malaysia（527m）二刷，或 Tandır（741m）；饭后 Casaba（473m）再来杯咖啡，走之前最后扫一圈',loc:'格雷梅小镇'},
+   {t:'下午',h:'格雷梅逛吃',d:'午餐：Restoran Malaysia（527m）二刷，或 Tandır（741m）；饭后 Casaba（473m）再来杯咖啡；伴手礼没收齐可再扫一遍主街（Elegant / Seven Brothers 等）',loc:'格雷梅小镇'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'回酒店取行李',loc:'卡帕多奇亚月亮酒店'},
    {t:'19:00',tz:'TR',hm:'19:00',h:'机场接驳出发（提前订）',d:'晚餐机上解决（商务舱有餐食）',loc:'卡帕多奇亚月亮酒店'},
    {t:'21:10',tz:'TR',hm:'21:10',h:'TK2009 起飞 → 伊斯坦布尔'},
    {t:'22:35',tz:'TR',hm:'22:35',h:'抵达伊斯坦布尔 IST',d:'不出机场：过边检盖章 → 国际出发区',loc:'伊斯坦布尔机场'},
-   {t:'23:00',tz:'TR',hm:'23:00',h:'国际区免税店购物',d:'基本通宵营业；软糖、茶、彩陶、蓝眼小物'},
+   {t:'23:00',tz:'TR',hm:'23:00',h:'国际区免税店购物',d:'基本通宵营业；软糖、茶、彩陶、蓝眼小物；兜底补货：潘多拉卡帕限定珠、Turasan 浮雕红酒（约120元）、乐事酸奶味薯片/ETI 巧克力'},
    {t:'00:45',tz:'TR',hm:'00:45',d15:1,h:'回到登机口附近候机',d:'01:35 起飞，预留登机时间'}
   ],
   navs:[{label:'月亮酒店 → 内夫谢希尔机场（接驳路线）',stops:['38.639896,34.8267134','Nevşehir Kapadokya Airport']}]},
