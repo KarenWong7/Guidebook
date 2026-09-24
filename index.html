@@ -47,7 +47,7 @@ body{
 #topnav a:active{color:var(--accent); border-color:var(--accent);}
 #topnav a.on{background:var(--accent); border-color:var(--accent); color:#fff;}
 [data-theme=dark] #topnav a.on{color:#0f171c;}
-#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secTodos,#secTips{scroll-margin-top:56px;}
+#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secSouv,#secTodos,#secTips{scroll-margin-top:56px;}
 
 /* ---------- 头部 ---------- */
 header{padding:28px 16px 8px; text-align:center;}
@@ -216,6 +216,7 @@ footer a{color:var(--muted);}
   <a href="#secSpeed">速查</a>
   <a href="#secRev1">卡什口碑</a>
   <a href="#secRev2">卡帕口碑</a>
+  <a href="#secSouv">伴手礼</a>
   <a href="#secTodos">待办</a>
   <a href="#secTips">贴士</a>
 </nav>
@@ -275,6 +276,18 @@ footer a{color:var(--muted);}
   <summary><h2 class="sec">卡帕多奇亚餐饮口碑</h2></summary>
   <div class="sec-sub">忌口提示见上方 · 点击标题跳转原笔记 · 时间为笔记发布日期</div>
   <div id="revList2"></div>
+  </details>
+</section>
+
+<section id="secSouv">
+  <details class="revg">
+  <summary><h2 class="sec">伴手礼</h2></summary>
+  <div class="sec-sub">结论整理自小红书 · 点击标题跳转原笔记 · 时间为笔记发布日期</div>
+  <div class="card rev-card">
+    <h3>我的雷点</h3>
+    <div class="diet-note">不买义乌流水线风的摆件与饰品；玻璃、陶瓷慎买（一人出行易碎难带，咖啡杯/红酒各限一件）；不买护手霜（家里太多）。</div>
+  </div>
+  <div id="souvList"></div>
   </details>
 </section>
 
@@ -767,7 +780,7 @@ applyTheme();setInterval(applyTheme,60000);
 
 /* ================= 导航滚动高亮 ================= */
 (function(){
-  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secTodos','secTips'];
+  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secSouv','secTodos','secTips'];
   var nav=document.getElementById('topnav'), links={}, els={};
   ids.forEach(function(id){links[id]=nav.querySelector('a[href="#'+id+'"]'); els[id]=document.getElementById(id);});
   function onScroll(){
@@ -949,6 +962,72 @@ function mixCardHTML(title,mixes){
   REVIEWS2.forEach(function(rv){h+=revCardHTML(rv);});
   h+=mixCardHTML('卡帕多奇亚美食合集与避雷帖',MIXES2);
   document.getElementById('revList2').innerHTML=h;
+})();
+
+/* ================= 伴手礼 ================= */
+var SOUV=[
+ {n:'热气球挂件 · 店对比',tag:'格雷梅',
+  note:'综合首选 Elegant Gift Shop：做工不错、价格美丽（玻璃&陶瓷挂件/冰箱贴 100–150 里拉）、免费 DIY 刻名字/日期、现金有折扣、小哥人好；追做工皮质去 Yastiks（刻字 250 里拉/素款 200 里拉，但价格偏贵、态度一般）；Baykus 避雷（中号 200/小号 100 里拉，刻字难看、换老板服务崩）；Sirvan 热气球好看但不能刻字、老板会一点中文。',
+  notes:[['卡帕必逛的2家gift shops：Elegant 免费刻字DIY+现金折扣，Yastiks 审美在线但价高','2026-03',592,XHS+'69b2c6c3000000001503bd1b?xsec_token=ABodv7piRElWbc9e3ROTz4KuBKEnyrGdTwnhAm5L6DWzE=&xsec_source=pc_share'],
+         ['格雷梅热门商店测评：Elegant/Yastiks/Sirvan/Baykus/Sultan 六店打分','2026-08',81,XHS+'6a8ea2660000000029028579?xsec_token=ABiB5pPuegsHqOromy5-TsuntX8NMEBwma_9dl6NtWAb0=&xsec_source=pc_share'],
+         ['热气球选购指南：Yastiks 刻字250/素款200里拉做工好，Baykus 中号200里拉服务时好时坏','2025-08',48,XHS+'68aef359000000001c00f0b8?xsec_token=ABRcOf8b057WTiN2-h5MhhUiiA6d9jkYdySIP6yzvnE4g=&xsec_source=pc_share']]},
+ {n:'鼠标垫兼挂画',tag:'格雷梅',
+  note:'Seven Brothers Carpet 的小地毯垫 150 里拉/个：可以当鼠标垫，也可以装进相框挂起来当装饰；机织但质感过关，老板热情爱讲故事。',
+  notes:[['小地毯垫150里拉：可当鼠标垫、可装框挂墙当装饰品','2025-08',48,XHS+'68aef359000000001c00f0b8?xsec_token=ABRcOf8b057WTiN2-h5MhhUiiA6d9jkYdySIP6yzvnE4g=&xsec_source=pc_share']]},
+ {n:'石雕摆件（洞穴塔/城堡）',tag:'格雷梅',
+  note:'格雷梅每晚有夜摊卖手搓洞穴塔：带灯款，摆件 10 欧、冰箱贴 150 里拉，收里拉现金，旺季淡季价浮动。D6 顺路：乌奇希萨尔城堡售票处对面斜坡第一家石雕店，老板自己在城堡附近捡石头雕的，每个独一无二。',
+  notes:[['手搓石头洞穴塔：带灯摆件10欧、冰箱贴150里拉，老板每晚摆摊','2026-04',29,XHS+'69d5153c0000000023023fd0?xsec_token=ABnaww9U5gRUmc-hNea3UZXMHWkazF4uWqWzy8f5qTFz4=&xsec_source=pc_share']]},
+ {n:'冰箱贴',tag:'格雷梅',
+  note:'主街推荐：Souvenir Art（唯一陶瓷热气球款 250 里拉，老板热情）、Elegant（玻璃&陶瓷 100–150 里拉，流水线里出众）、Ottoman Gift Shop（别家没有的陶瓷款）、Simidi 面包圈款；乌奇希萨尔城堡石雕冰箱贴 200 里拉（老板自制，每个颜色细节不同）。',
+  notes:[['买到格雷梅最满意的冰箱贴：Elegant/Ottoman 价位+乌奇希萨尔石雕款200里拉','2026-09',73,XHS+'6aad0ce2000000000d024051?xsec_token=ABD3EkSrP32SXiOe-A2PQCX_HFkCqrV7ty3MIJ9y4n8W0=&xsec_source=pc_share']]},
+ {n:'卡帕多奇亚浮雕红酒',tag:'格雷梅',
+  note:'Turasan 酒厂浮雕瓶（浮雕=洞穴奇观、盒子=土耳其插画师作品，好喝），格雷梅 Trz Market 有售；参考价：酒店 15 欧、机场约 120 元。玻璃瓶——衣物层层包裹放行李箱中间托运。',
+  notes:[['卡帕多奇亚颜值最高的一瓶酒：Turasan 浮雕瓶，格雷梅 Trz Market 有售','2023-07',60,XHS+'64aec9320000000035008bda?xsec_token=ABfktmE4ZxTeXPWWA5386fSkAWThgt0KqK7WNDmg8mAqA=&xsec_source=pc_share']]},
+ {n:'潘多拉城市限定珠',tag:'格雷梅',
+  note:'格雷梅镇上有店（行前官网确认）。热气球 charm 70 欧、背面刻 Cappadocia、全球只有卡帕能买到；另有热气球款 80 欧；手链最便宜 70 欧不划算。卡什无店；IST 机场有专柜兜底。',
+  notes:[['卡帕限定潘多拉：热气球charm 70欧背面刻Cappadocia，全球仅卡帕有','2025-07',314,XHS+'6873dc9e000000002201d015?xsec_token=ABmyAGVgMhHkzswPyCkgk91hAOZhDaKKwfRAq5WWCjM1o=&xsec_source=pc_share']]},
+ {n:'卡什购物点',tag:'卡什',
+  note:'Terra Decor（D4 已排）：蓝白渐变咖啡杯、浮雕瓷砖画（可挂墙）、手工陶瓷冰箱贴，明码标价，易碎品免费气泡膜包装可托运；主街「最好逛的小店」疑为同店（评论区陶瓷画 2390 里拉吻合）；晚上码头附近巷子有手作集市（首饰+非义乌风冰箱贴）。',
+  notes:[['Terra Decor 攻略：蓝白咖啡杯/浮雕瓷砖画/陶瓷冰箱贴，免费气泡膜包装可托运','2026-06',34,XHS+'6a2aba15000000000803355f?xsec_token=ABQVW7vUOQLvDlPKTB_NBISJv4VoPvKLJWfN7mQKNpMhs=&xsec_source=pc_share'],
+         ['kas小镇最好逛的小店（疑为 Terra Decor）：工艺品 tb 搜不到同款','2026-07',95,XHS+'6a5fb3390000000001033951?xsec_token=ABDwTn5yNZAladkhYIC6NedZFtytMxe95INckiiQ1Jz0g=&xsec_source=pc_share'],
+         ['卡什手工集市：码头附近晚上出摊，手作冰箱贴不是义乌款','2026-08',15,XHS+'6a734d0d00000000080126d2?xsec_token=ABDeTxZ9XK6K0CbUJGhnxWgkAsRElhBZoEXetaJlL5J20=&xsec_source=pc_share']]},
+ {n:'玫瑰水',tag:'品牌',
+  note:'别盲冲小红书爆款 Gülbirlik：当地店家力荐同价 400 里拉/250ml 的 ROSETURKA（紫花包装，作者实测更香更润）；反方意见：有人觉得玫瑰水只香不保湿、不如 Melvita。Gratis 有 Otacı 玫瑰水 259 里拉更便宜。',
+  notes:[['买玫瑰水注意：店家力荐 ROSETURKA（紫花包装），与爆款 Gülbirlik 同价400里拉','2026-09',13,XHS+'6ab40f3c000000001b02fade?xsec_token=ABFdtF4C0pIYXhsHPhaPSxgKhETMfYN0oA-9w3H8ASRUk=&xsec_source=pc_share'],
+         ['反方：玫瑰水只有香味不保湿，不如 Melvita，不建议作手信','2026-06',42,XHS+'6a2242b20000000022022e15?xsec_token=AB4U6VZtRSURbUGw9HDKsNzhWYX2TegJRJ5TGfgZs5eAU=&xsec_source=pc_share']]},
+ {n:'乐事薯片',tag:'超市',
+  note:'酸奶香料味（土耳其必买）；酸奶欧芹时蔬=土耳其限定。卡什镇中心 Migros/A101/BİM/Şok/CarrefourSA 全有；格雷梅只有 BİM/A101/Şok（无 Migros）。',
+  notes:[['土耳其必买：乐事酸奶香料薯片','2025-05',66,XHS+'6834adbb0000000021001280?xsec_token=ABn-FyqM3Wd1sKadf5GH0J4r5-7ux-SqaKhz2uOWvoEqw=&xsec_source=pc_share'],
+         ['土耳其限定：酸奶欧芹时蔬味薯片','2026-09',2,XHS+'6aaeb310000000002803bec1?xsec_token=AB4TaCrZGZHq2mQNeHLYTOmic9CAUTu_1COPzDGflokC0=&xsec_source=pc_share']]},
+ {n:'巧克力（Tadelle / 开心果）',tag:'超市',
+  note:'ETI 全线好评：54% 黑巧开心果（浓郁不齁甜、开心果香）、ETI 威化「无代餐」（评论区 13 赞）；Tadelle=Ülker 榛子酱巧克力条，各大超市有售。土耳其巧克力整体偏甜，送人选高可可含量款。',
+  notes:[['遇到这个巧克力你就买吧：ETI 54%黑巧开心果，浓郁不齁甜','2025-05',497,XHS+'68133448000000002301ec0f?xsec_token=AB-hdBCBdRM-r59nAEzyBkXINsCTsvPWm7btwVq2Ebu0k=&xsec_source=pc_share'],
+         ['土耳其超好吃的巧克力：ETI 威化评论区封神','2026-08',272,XHS+'6a86c86c000000002701f7be?xsec_token=ABbV__dXwR8m9N7yqfsqU5CrkiW7SEpT2eODjPErrNhW4=&xsec_source=pc_share'],
+         ['7款开心果巧克力测评（品牌未点名，仅供参考）','2025-10',49,XHS+'68fa2b0300000000030373b5?xsec_token=ABkBNcJE1cKxhrp0m-ToW-Xlcsm2l0bp9ZrHz91BcmjtE=&xsec_source=pc_share']]},
+ {n:'Gratis 必买（仅卡什有店）',tag:'卡什',
+  note:'格雷梅周边无 Gratis（最近在内夫谢希尔市区 11km），要买在卡什那家买齐：红字护发精油（疑 Bioblas，活动价 149.5 里拉，被称堪比卡诗）、Miss Kay 香水 199 里拉起（Gratis 独家、意大利产）、Eyüp Sabri Tuncer 柠檬古龙水约 130 里拉、Flormar/Beaulis 彩妆；折扣每天不同（20% 到对折），碰上再买。',
+  notes:[['卡什小镇Gratis：红字护发精油149.5里拉堪比卡诗，主路近海那家','2026-08',72,XHS+'6a8c90d60000000020031941?xsec_token=ABV2S2xSeLGuqVWFEUXfwfH_PGgt0G1ZZsAMSvrYtgKv4=&xsec_source=pc_share'],
+         ['Gratis 平价纪念品清单：Otacı 玫瑰水259里拉、Bioblas 护发精油299里拉等','2026-09',40,XHS+'6aa44b3e0000000011034705?xsec_token=ABonYIWSG8JoINyEk36_loE_XQ4XozR8UuYRCh_04pgHQ=&xsec_source=pc_share']]},
+ {n:'dantenoir 香水',tag:'品牌',
+  note:'小红书搜不到此词条；英文网络唯一线索是 Leon Scent 旗下小众品牌（安塔利亚时装周亮相），无零售渠道信息、Gratis 不售。建议向推荐人确认拼写与购买地；卡什本地有口碑香水店（留香久、味道好，但笔记未点名）。',
+  notes:[['卡什香水店求代购：留香久、味道好（店名未点名）','2025-10',17,XHS+'69032ef2000000000703ac88?xsec_token=ABPAzrDKEAf09WCLwkR_7Z4K-tqg0MuoN9oK44fGCpWHs=&xsec_source=pc_share']]}
+];
+function souvCardHTML(sv){
+  var h='<div class="card rev-card"><h3>'+esc(sv.n)+'<span class="rv-tag">'+sv.tag+'</span></h3>';
+  if(sv.note)h+='<div class="rev-note">'+sv.note+'</div>';
+  if(sv.notes.length){
+    h+='<div class="good-head">参考笔记</div><ul class="rev-list good">';
+    sv.notes.forEach(function(g){
+      h+='<li><a target="_blank" rel="noopener" href="'+g[3]+'">'+esc(g[0])+'</a> <span class="rev-meta">'+g[1]+' · ❤ '+g[2]+'</span></li>';
+    });
+    h+='</ul>';
+  }
+  return h+'</div>';
+}
+(function(){
+  var h='';
+  SOUV.forEach(function(sv){h+=souvCardHTML(sv);});
+  document.getElementById('souvList').innerHTML=h;
 })();
 </script>
 </body>
