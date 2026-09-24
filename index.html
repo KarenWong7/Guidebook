@@ -47,7 +47,7 @@ body{
 #topnav a:active{color:var(--accent); border-color:var(--accent);}
 #topnav a.on{background:var(--accent); border-color:var(--accent); color:#fff;}
 [data-theme=dark] #topnav a.on{color:#0f171c;}
-#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secSouv,#secTodos,#secTips{scroll-margin-top:56px;}
+#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secSouv,#secTodos{scroll-margin-top:56px;}
 
 /* ---------- 头部 ---------- */
 header{padding:28px 16px 8px; text-align:center;}
@@ -184,7 +184,7 @@ ul.rev-list a:active{color:var(--accent);}
 .rev-note{font-size:12px; color:var(--muted); margin-top:6px; padding:6px 10px; background:var(--bg); border-radius:8px; line-height:1.6;}
 .diet-note{font-size:13px; margin-top:6px; padding:8px 10px; background:var(--tint); border-left:3px solid var(--accent); border-radius:8px; color:var(--ink);}
 
-/* ---------- 待办 / 贴士 ---------- */
+/* ---------- 待办 ---------- */
 ol.todos{list-style:none; counter-reset:td; margin-top:8px;}
 ol.todos li{
   counter-increment:td; position:relative; padding:9px 10px 9px 44px;
@@ -196,10 +196,6 @@ ol.todos li::before{
   text-align:center; line-height:24px; font-size:13px; font-weight:700;
 }
 ol.todos li .td-day{color:var(--muted); font-size:12px; font-weight:600;}
-ul.tips{margin:8px 0 0 2px; list-style:none;}
-ul.tips li{padding:7px 0 7px 24px; position:relative; font-size:14px; border-bottom:1px dashed var(--line);}
-ul.tips li::before{content:"✧"; position:absolute; left:2px; color:var(--accent);}
-ul.tips li b{color:var(--accent); font-weight:600;}
 
 footer{color:var(--muted); font-size:12px; text-align:center; margin-top:40px;}
 footer a{color:var(--muted);}
@@ -218,7 +214,6 @@ footer a{color:var(--muted);}
   <a href="#secRev2">卡帕口碑</a>
   <a href="#secSouv">伴手礼</a>
   <a href="#secTodos">待办</a>
-  <a href="#secTips">贴士</a>
 </nav>
 
 <header>
@@ -306,23 +301,6 @@ footer a{color:var(--muted);}
     <li><span class="td-day">出发前/10/12–13</span> 订 10/13 老爷车日落班：可提前几天线上预订，或到当地在格雷梅巴士站附近旅行社（酒店前台也可）订；按车计费 1–4 人含司机、约 60 欧起（单人即整车价），比价再订；提交酒店资料即算订成、不可无故取消</li>
     <li><span class="td-day">10/14 晚</span> 22:35 落地伊斯坦布尔后直接过边检进国际区，01:35 前回到登机口附近</li>
   </ol>
-  </div>
-</section>
-
-<section id="secTips">
-  <h2 class="sec">实用贴士</h2>
-  <div class="card">
-  <ul class="tips">
-    <li><b>天气与穿着</b>：10 月中旬卡什白天 23–27°C、夜间 15–18°C，海水约 23°C 可下水；卡帕多奇亚昼夜温差大、早晚 8–12°C，老爷车追日落风大，带一件防风外套。全程防晒。</li>
-    <li><b>10/8 转机</b>：伊斯坦布尔转机只有 80 分钟，下机勿停留，跟「国际转机」指示过转机安检；同一票号行李通常直挂，分段出票则需自取再托运。</li>
-    <li><b>达拉曼 → 卡什小巴</b>：出航站楼下楼梯即有一排前往卡什的售票窗口，现场买票（约 1000 里拉/人，2.5–3 小时，家乐福附近下车）。若某家窗口没车，问隔壁窗口；晚班车视当天人流量。</li>
-    <li><b>古剧场日落</b>：提前 30–40 分钟到，往台阶高处坐，西面就是海。三个傍晚都安排了，天气不好就顺延。</li>
-    <li><b>免税店</b>：伊斯坦布尔机场国际区免税店基本通宵营业，10/14 晚 23:00–00:45 是购物窗口。土耳其软糖、茶、彩陶、蓝眼小物是常见伴手礼。</li>
-    <li><b>支付</b>：Visa/Master 通用；ATM 取现方便，选「拒绝转换」走发卡行汇率更划算。</li>
-    <li><b>语言</b>：旅游区英文够用，学两句：Merhaba（你好）、Teşekkürler（谢谢）。</li>
-    <li><b>文件安全</b>：护照 + 电子签打印件随身；酒店订单、接驳确认邮件截图存到手机离线相册。</li>
-    <li><b>打车</b>：卡什、格雷梅镇内基本步行可达；去城堡可让酒店叫车或打表出租车，上车前确认价格。</li>
-  </ul>
   </div>
 </section>
 
@@ -451,7 +429,7 @@ var DAYS=[
    {t:'午餐',h:'Sushi Kaşhi',d:'卡什最想吃的一家（东385m）：炒面炒饭口碑强，寿司价格偏高',loc:'Sushi Kaşhi'},
    {t:'下午',hm:'15:00',h:'顺路去卡什车站',d:'问清 10/12 早班车时刻（待办清单第 8 项）；镇中心可坐写 Allugu 的小巴去新车站，60里拉/人',loc:'卡什车站'},
    {t:'傍晚前',h:'回镇上闲逛 · Gratis 采购',d:'GRATİS KAŞ CD（279m）：红字护发精油（活动价149.5里拉）、Otacı 玫瑰水259里拉——格雷梅周边无 Gratis，要买在卡什买齐；顺路 Linckia（62m）再来一杯 / Dondurma 冰淇淋（262m）',loc:'GRATİS KAŞ CD'},
-   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'距酒店步行约 4 分钟，往台阶高处坐',loc:'安迪菲勒斯古剧场',intro:'卡什古称安迪菲勒斯（Antiphellus），是利西亚古国的一座海滨城邦。剧场建于希腊化时期，依山开凿、面向地中海，可容纳约 4000 名观众；经修复后仍大体完整，且从未建有永久性石砌舞台。剧场周边还有公元前 4 世纪的多立克式墓、崖壁岩墓等遗迹。'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'提前 30–40 分钟到；距酒店步行约 4 分钟，往台阶高处坐，西面就是海',loc:'安迪菲勒斯古剧场',intro:'卡什古称安迪菲勒斯（Antiphellus），是利西亚古国的一座海滨城邦。剧场建于希腊化时期，依山开凿、面向地中海，可容纳约 4000 名观众；经修复后仍大体完整，且从未建有永久性石砌舞台。剧场周边还有公元前 4 世纪的多立克式墓、崖壁岩墓等遗迹。'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落',d:'西面就是海，光落在剧场石阶上'},
    {t:'晚上',h:'小镇晚餐 · 码头手作集市',d:'收藏任选：FÜM Smokehouse（98m）/ Bay Köfte（271m）/ Tellina（520m）；饭后码头附近巷子有手作集市（首饰+冰箱贴），可顺路一逛'}
   ],
@@ -471,7 +449,7 @@ var DAYS=[
   rows:[
    {t:'上午',h:'酒店早餐 · 三角梅拍照 · 购物店补货',d:'早餐 8:00–11:00；先到三角梅（东南77m）拍照；D2 没收齐的伴手礼可再逛 Terra decor / GRATİS KAŞ CD（东北 279–336m）补货；Lily\'s Corner 餐厅可顺带简餐',loc:'卡什小镇'},
    {t:'午餐',h:'Bay Köfte',d:'距酒店东北 271m',loc:'Bay Köfte'},
-   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',loc:'安迪菲勒斯古剧场'},
+   {t:'18:00',tz:'TR',hm:'18:00',h:'安迪菲勒斯古剧场占位',d:'提前 30–40 分钟到，往台阶高处坐',loc:'安迪菲勒斯古剧场'},
    {t:'18:35',tz:'TR',hm:'18:35',h:'日落 · 卡什最后一场'},
    {t:'晚上',h:'卡什最后一顿晚餐',d:'从收藏里挑还没吃过的：Ege（216m）/ FÜM（98m）/ Tellina（520m）'},
    {t:'21:30',tz:'TR',hm:'21:30',h:'回酒店早睡',d:'次日凌晨出发，今晚结清账目'}
@@ -784,7 +762,7 @@ applyTheme();setInterval(applyTheme,60000);
 
 /* ================= 导航滚动高亮 ================= */
 (function(){
-  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secSouv','secTodos','secTips'];
+  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secSouv','secTodos'];
   var nav=document.getElementById('topnav'), links={}, els={};
   ids.forEach(function(id){links[id]=nav.querySelector('a[href="#'+id+'"]'); els[id]=document.getElementById(id);});
   function onScroll(){
