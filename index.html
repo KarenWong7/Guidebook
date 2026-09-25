@@ -151,6 +151,10 @@ a.navbtn:active{transform:scale(.97);}
 .tl .c p{font-size:13px; color:var(--muted); margin-top:2px;}
 .tl .intr{font-size:12.5px; color:var(--muted); background:var(--tint); border-radius:8px; padding:6px 8px; margin-top:6px; line-height:1.55;}
 .tl .intr .intr-src{display:inline-block; font-size:10.5px; color:var(--accent); border:1px solid var(--line); border-radius:4px; padding:0 5px; margin-left:6px; vertical-align:1px;}
+.tl .tips{margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--tint);}
+.tl .tips .tips-h{font-weight:600;font-size:12px;margin-bottom:3px;}
+.tl .tips ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--muted);line-height:1.55;}
+.tl .tips li{margin:2px 0;}
 .tl .row:last-child .c{border-left-color:transparent;}
 a.chip{
   display:inline-block; font-size:12px; color:var(--accent); text-decoration:none;
@@ -292,7 +296,7 @@ footer a{color:var(--muted);}
   <ol class="todos">
     <li><span class="td-day">出发前</span> 办土耳其电子签（官网 evisa.gov.tr，打印或存手机随身带）</li>
     <li><span class="td-day">出发前</span> 买好 eSIM 或开通漫游，保存激活说明</li>
-    <li><span class="td-day">出发前</span> 备少量里拉现金（部分小店和巴士只收现金）+ Visa/Master 卡</li>
+    <li><span class="td-day">出发前</span> 招行 App 开通储蓄卡境外取款功能；带银联储蓄卡 + Visa 信用卡（信用卡只刷卡不取现）；里拉现金到土耳其再取——达拉曼机场 Halkbank 优先、一次取 8000–10000 里拉</li>
     <li><span class="td-day">出发前</span> 下载 Google 离线地图：卡什、卡帕多奇亚（山谷里常没信号）</li>
     <li><span class="td-day">出发前</span> 告知帕亚姆酒店 10/8 约 22:00 后入住（☎ <a href="tel:+902428361566">+90 242 836 15 66</a> 或通过预订平台留言）</li>
     <li><span class="td-day">出发前</span> 订内夫谢希尔机场 ↔ 格雷梅接驳（10/12 去程 15:10 落地后、10/14 19:00 回程；月亮酒店可代订）</li>
@@ -415,10 +419,10 @@ var DAYS=[
  {n:1,date:'10月8日',dow:'周四',title:'飞往土耳其 · 抵达卡什',stay:'夜宿Payam Hotel',
   rows:[
    {t:'07:55',tz:'北京',hm:'07:55',tz8:1,h:'上海浦东 T2 · TK281 起飞',d:'国际航班请提前 3 小时到机场',loc:'上海浦东T2'},
-   {t:'14:50',tz:'TR',hm:'14:50',h:'抵达伊斯坦布尔 IST',d:'转机仅 80 分钟：下机跟「国际转机」指示走，过转机安检，勿闲逛',loc:'伊斯坦布尔机场'},
+   {t:'14:50',tz:'TR',hm:'14:50',h:'抵达伊斯坦布尔 IST',d:'转机仅 80 分钟：下机跟「国际转机」指示走，过转机边检（商务舱走快速通道）与转机安检，勿停留；⚠️ 转机动线不路过 ATM（机场 ATM 全在到达层陆侧），取现放达拉曼机场',loc:'伊斯坦布尔机场'},
    {t:'16:10',tz:'TR',hm:'16:10',h:'TK2562 起飞 → 达拉曼'},
-   {t:'17:30',tz:'TR',hm:'17:30',h:'抵达达拉曼 DLM',d:'机场很小，取行李约 10–20 分钟',loc:'达拉曼机场'},
-   {t:'18:15',tz:'TR',hm:'18:15',h:'机场内购买前往卡什的小巴票',d:'出航站楼下楼梯有一排前往卡什的售票窗口，现场买票（约 1000 里拉/人，车程 2.5–3 小时）；某家没车就问隔壁窗口',loc:'达拉曼机场'},
+   {t:'17:30',tz:'TR',hm:'17:30',h:'抵达达拉曼 DLM · 到达大厅取现',d:'机场很小，取行李约 10–20 分钟；出海关后在到达大厅取现（巴士票一般只收现金，取完再买）',loc:'达拉曼机场',tipsh:'💳 取现要点',tips:['到达大厅有 Ziraat / Halkbank / Vakıfbank，中央大厅还有 DenizBank','顺序：Halkbank → Ziraat → Vakıfbank；屏幕显示手续费就取消换下一台','白色三方 ATM 别碰（收 10%）；先退卡再吐钞；拒绝 DCC（按里拉结算）','一次取 8000–10000 里拉（约 ¥1100–1400）够全程']},
+   {t:'18:15',tz:'TR',hm:'18:15',h:'机场内购买前往卡什的小巴票',d:'出航站楼下楼梯有一排前往卡什的售票窗口，现场买票（约 1000 里拉/人，一般只收现金）；某家没车就问隔壁窗口，车程 2.5–3 小时',loc:'达拉曼机场'},
    {t:'≈21:30',tz:'TR',hm:'21:30',h:'卡什镇中心家乐福附近下车',d:'步行约 5 分钟到酒店；两段商务舱都有餐食，抵达不用再找吃的',loc:'卡什家乐福'},
    {t:'≈22:00',tz:'TR',hm:'22:00',h:'帕亚姆酒店入住',d:'已提前告知酒店晚到',loc:'帕亚姆酒店'}
   ],
@@ -753,6 +757,7 @@ applyTheme();setInterval(applyTheme,60000);
       }
       if(r.xhs)h+='<a class="chip" target="_blank" rel="noopener" href="'+r.xhs+'">📕 '+esc(r.xhst||'笔记')+'</a>';
       if(r.intro)h+='<div class="intr">📖 '+esc(r.intro)+'<span class="intr-src">'+esc(r.introsrc||'维基百科')+'</span></div>';
+      if(r.tips){h+='<div class="tips"><div class="tips-h">'+esc(r.tipsh||'💳 小贴士')+'</div><ul>';r.tips.forEach(function(tp){h+='<li>'+esc(tp)+'</li>'});h+='</ul></div>';}
       h+='</div></div>';
     });
     h+='</div></details>';
