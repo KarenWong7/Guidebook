@@ -67,10 +67,6 @@ header .tz-note{
   border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
   padding:20px 18px; margin:18px 0;
 }
-section[id]:not(#nowCard)::before{
-  content:""; display:block; border-top:2px solid var(--div); margin:0 2px 20px;
-}
-.sec-div{border-top:2px solid var(--div); margin:0 2px 20px;}
 h2.sec{
   font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:700;
   font-size:21px; letter-spacing:1px;
@@ -261,7 +257,6 @@ footer a{color:var(--muted);}
   <div class="sec-sub">点日期展开当天安排 · 点击地点直接唤起 Google 地图导航</div>
   <div id="days"></div>
 
-  <div class="sec-div"></div>
   <h2 class="sec" id="secSpeed">收藏地点速查</h2>
   <div class="sec-sub" id="speedSub">收藏全部在此 · 点击直接导航</div>
   <div id="speedList"></div>
