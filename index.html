@@ -15,7 +15,7 @@
   --bg:#0f171c; --card:#182228; --ink:#e3eaee; --muted:#8b98a2; --line:#2c3a41; --div:#33434b;
   --accent:#4ac3b3; --tint:rgba(74,195,179,.14); --shadow:0 1px 3px rgba(0,0,0,.45);
   --bad:#e08a7c;
-  --navbg:rgba(24,34,40,.92);
+  --navbg:rgba(40,54,63,.96);
 }
 a{color:var(--accent); text-decoration:none;}
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -35,7 +35,7 @@ body{
   background:var(--navbg);
   -webkit-backdrop-filter:blur(16px) saturate(1.5);
   backdrop-filter:blur(16px) saturate(1.5);
-  border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+  border-bottom:1.5px solid var(--div); box-shadow:var(--shadow);
   -webkit-overflow-scrolling:touch; scrollbar-width:none;
 }
 #topnav::-webkit-scrollbar{display:none;}
@@ -68,9 +68,9 @@ header .tz-note{
   padding:20px 18px; margin:18px 0;
 }
 section[id]:not(#nowCard)::before{
-  content:""; display:block; border-top:2px dashed var(--div); margin:0 2px 20px;
+  content:""; display:block; border-top:2px solid var(--div); margin:0 2px 20px;
 }
-.sec-div{border-top:2px dashed var(--div); margin:0 2px 20px;}
+.sec-div{border-top:2px solid var(--div); margin:0 2px 20px;}
 h2.sec{
   font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:700;
   font-size:21px; letter-spacing:1px;
