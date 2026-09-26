@@ -306,6 +306,7 @@ footer a{color:var(--muted);}
     <li><span class="td-day">出发前</span> 订内夫谢希尔机场 ↔ 格雷梅接驳（10/12 去程 15:10 落地后、10/14 19:00 回程；月亮酒店可代订）</li>
     <li><span class="td-day">10/8 入住</span> 帕亚姆酒店入住先检查房间：厕所有无反味、有无油漆味，不满意当场要求换房</li>
     <li><span class="td-day">10/9</span> 去卡什车站问清 10/12 早班车时刻 ⚠️ 若只有 6:00 班、车程 2.5–3 小时，对 10:20 航班偏紧——问不到更早班次就当晚预约出租车/拼车</li>
+    <li><span class="td-day">10/12 入住时</span> 跟月亮酒店申请 10/14 延迟退房：官网条款「视房态、可能收费」——入住当天就问，能延到下午最好、可主动提出付费；不行就寄存行李、出门前后用酒店公共洗手间；也可提前 WhatsApp <a href="https://wa.me/905433271850" target="_blank" rel="noopener">+90 543 327 18 50</a> 问</li>
     <li><span class="td-day">出发前/10/12–13</span> 订 10/13 老爷车日落班：可提前几天线上预订，或到当地在格雷梅巴士站附近旅行社（酒店前台也可）订；按车计费 1–4 人含司机、约 60 欧起（单人即整车价），比价再订；提交酒店资料即算订成、不可无故取消</li>
     <li><span class="td-day">10/14 晚</span> 22:35 落地伊斯坦布尔后直接过边检进国际区，01:35 前回到登机口附近</li>
   </ol>
@@ -414,7 +415,7 @@ var FLIGHTS=[
 /* 酒店 */
 var HOTELS=[
  {name:'帕亚姆酒店', en:'Payam Hotel', nights:'10月8日 – 12日 · 4 晚', addr:'Andifli, Yeni Cami Cd. no:24, 07580 Kaş/Antalya', phone:'+90 242 836 15 66', tel:'+902428361566', ci:'14:00 后', co:'11:00 前', lat:36.1999015, lng:29.636924, note:'距安迪菲勒斯古剧场步行约 4 分钟，距 İnceboğaz Çınar 海滩约 1 公里'},
- {name:'卡帕多奇亚月亮酒店', en:'Lunar Cappadocia Hotel', nights:'10月12日 – 14日 · 2 晚', addr:'Aydınlı Mah. Görçeli Sk. No:12, 50180 Göreme/Nevşehir', phone:'+90 384 271 23 83', tel:'+903842712383', ci:'14:00 后', co:'12:00 前', lat:38.639896, lng:34.8267134, note:'格雷梅镇内，步行可达各家餐厅'}
+ {name:'卡帕多奇亚月亮酒店', en:'Lunar Cappadocia Hotel', nights:'10月12日 – 14日 · 2 晚', addr:'Aydınlı Mah. Görçeli Sk. No:12, 50180 Göreme/Nevşehir', phone:'+90 384 271 23 83', tel:'+903842712383', ci:'14:00 后', co:'12:00 前', lat:38.639896, lng:34.8267134, note:'格雷梅镇内，步行可达各家餐厅', web:'https://www.lunarcappadocia.com/en/'}
 ];
 
 /* 每日行程 */
@@ -472,7 +473,7 @@ var DAYS=[
    {t:'13:55',tz:'TR',hm:'13:55',h:'TK2006 起飞 → 内夫谢希尔'},
    {t:'15:10',tz:'TR',hm:'15:10',h:'抵达内夫谢希尔 NAV',loc:'内夫谢希尔机场'},
    {t:'15:30',tz:'TR',hm:'15:30',h:'穿梭小巴去格雷梅',d:'报酒店名和人数，送到酒店门口（建议提前订，约 45–60 分钟）',loc:'内夫谢希尔机场'},
-   {t:'≈16:15',tz:'TR',hm:'16:15',h:'月亮酒店入住',loc:'卡帕多奇亚月亮酒店'},
+   {t:'≈16:15',tz:'TR',hm:'16:15',h:'月亮酒店入住',loc:'卡帕多奇亚月亮酒店',web:'https://www.lunarcappadocia.com/en/',webt:'月亮酒店官网'},
    {t:'17:45',tz:'TR',hm:'17:45',h:'Kaira Rooftop 看日落',d:'屋顶酒吧（16+），步行可达；先到先得好位置。若到店晚于 16:30 没赶上日落：晚餐改去 Restoran Malaysia（步行约 5 分钟），Kaira 改 10/13 老爷车回来晚饭后去喝一杯看夜景',loc:'Kaira Rooftop'},
    {t:'18:20',tz:'TR',hm:'18:20',h:'日落',d:'Kaira 看日落、喝酒、听现场音乐，晚餐就地解决'},
    {t:'≈20:30',tz:'TR',hm:'20:30',h:'格雷梅观景台看夜景',d:'晚饭后步行上山（从 Kaira 出来约 1 分钟就到）；门票 30 里拉，只刷卡不收现金；夜路偏黑，开手机手电；俯瞰格雷梅夜色与星空',loc:'观景台（Sunset & Sunrise / Balloon Viewpoint）'}
@@ -497,7 +498,7 @@ var DAYS=[
  {n:7,date:'10月14日',dow:'周三',title:'格雷梅返程 · 深夜转机',stay:'机上 / 机场',
   rows:[
    {t:'上午',h:'睡到自然醒 · 酒店早餐',d:'卡帕最后一顿酒店早餐；12:00 退房'},
-   {t:'12:00',tz:'TR',hm:'12:00',h:'退房 · 行李寄存前台',loc:'卡帕多奇亚月亮酒店'},
+   {t:'12:00',tz:'TR',hm:'12:00',h:'退房 · 行李寄存前台',loc:'卡帕多奇亚月亮酒店',web:'https://www.lunarcappadocia.com/en/',webt:'月亮酒店官网',d:'⚠️ 延迟退房可申请：官网条款「视房态而定、可能收费」——入住当天（10/12）就向前台申请（沟通工具里有发音），能延到下午最好，可主动提出付费；不行就寄存行李、出门前后用酒店公共洗手间。官网标准退房 11:00，与确认单的 12:00 顺带核实；也可提前 WhatsApp 问'},
    {t:'下午',h:'格雷梅逛吃',d:'午餐：Restoran Malaysia（527m）二刷，或 Tandır（741m）；饭后 Casaba（473m）再来杯咖啡；伴手礼没收齐可再扫一遍主街（Elegant / Seven Brothers 等）',loc:'格雷梅小镇'},
    {t:'18:00',tz:'TR',hm:'18:00',h:'回酒店取行李',loc:'卡帕多奇亚月亮酒店'},
    {t:'19:00',tz:'TR',hm:'19:00',h:'机场接驳出发（提前订）',d:'晚餐机上解决（商务舱有餐食）',loc:'卡帕多奇亚月亮酒店'},
@@ -676,7 +677,7 @@ applyTheme();setInterval(applyTheme,60000);
     h+='<div class="fh-card"><h3>'+hh.name+' <span class="meta">'+hh.en+'</span></h3>';
     h+='<div class="meta">'+hh.nights+'</div>';
     h+='<div class="route">📍 '+esc(hh.addr)+'</div>';
-    h+='<div class="route">☎ <a href="tel:'+hh.tel+'">'+hh.phone+'</a> · <a target="_blank" rel="noopener" href="'+navC(hh.name)+'">打开导航</a></div>';
+    h+='<div class="route">☎ <a href="tel:'+hh.tel+'">'+hh.phone+'</a> · <a target="_blank" rel="noopener" href="'+navC(hh.name)+'">打开导航</a>'+(hh.web?' · <a target="_blank" rel="noopener" href="'+hh.web+'">🌐 官网</a>':'')+'</div>';
     h+='<div class="policies">入住 '+hh.ci+' · 退房 '+hh.co+' · '+esc(hh.note)+'</div>';
     h+='</div>';
   });
@@ -722,6 +723,7 @@ applyTheme();setInterval(applyTheme,60000);
         else h+='<span class="chip">'+esc(r.loc)+'</span>';
       }
       if(r.xhs)h+='<a class="chip" target="_blank" rel="noopener" href="'+r.xhs+'">📕 '+esc(r.xhst||'笔记')+'</a>';
+      if(r.web)h+='<a class="chip" target="_blank" rel="noopener" href="'+r.web+'">🌐 '+esc(r.webt||'官网')+'</a>';
       if(r.intro)h+='<div class="intr">📖 '+esc(r.intro)+'<span class="intr-src">'+esc(r.introsrc||'维基百科')+'</span></div>';
       if(r.tips){h+='<div class="tips"><div class="tips-h">'+esc(r.tipsh||'💳 小贴士')+'</div><ul>';r.tips.forEach(function(tp){h+='<li>'+esc(tp)+'</li>'});h+='</ul></div>';}
       h+='</div></div>';
