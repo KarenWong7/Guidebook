@@ -6,16 +6,16 @@
 <title>土耳其Guidebook · 卡什 × 卡帕多奇亚</title>
 <style>
 :root{
-  --bg:#edf3f5; --card:#ffffff; --ink:#21282e; --muted:#75828b; --line:#d3dde2;
+  --bg:#edf3f5; --card:#ffffff; --ink:#21282e; --muted:#75828b; --line:#d3dde2; --div:#b7c6cd;
   --accent:#0e7f78; --tint:rgba(14,127,120,.10); --shadow:0 1px 3px rgba(15,40,55,.08);
   --bad:#b0544a;
-  --navbg:rgba(237,243,245,.72);
+  --navbg:rgba(255,255,255,.92);
 }
 [data-theme=dark]{
-  --bg:#0f171c; --card:#182228; --ink:#e3eaee; --muted:#8b98a2; --line:#2c3a41;
+  --bg:#0f171c; --card:#182228; --ink:#e3eaee; --muted:#8b98a2; --line:#2c3a41; --div:#33434b;
   --accent:#4ac3b3; --tint:rgba(74,195,179,.14); --shadow:0 1px 3px rgba(0,0,0,.45);
   --bad:#e08a7c;
-  --navbg:rgba(15,23,28,.72);
+  --navbg:rgba(24,34,40,.92);
 }
 a{color:var(--accent); text-decoration:none;}
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -41,7 +41,7 @@ body{
 #topnav::-webkit-scrollbar{display:none;}
 #topnav a{
   flex:0 0 auto; font-size:13px; font-weight:600; color:var(--ink);
-  background:var(--card); border:1.5px solid var(--line);
+  background:var(--bg); border:1.5px solid var(--line);
   border-radius:99px; padding:4px 12px; white-space:nowrap; text-decoration:none;
 }
 #topnav a:active{color:var(--accent); border-color:var(--accent);}
@@ -67,6 +67,10 @@ header .tz-note{
   border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
   padding:20px 18px; margin:18px 0;
 }
+section[id]:not(#nowCard)::before{
+  content:""; display:block; border-top:2px dashed var(--div); margin:0 2px 20px;
+}
+.sec-div{border-top:2px dashed var(--div); margin:0 2px 20px;}
 h2.sec{
   font-family:"PingFang SC","Microsoft YaHei","SimHei","Heiti SC",sans-serif; font-weight:700;
   font-size:21px; letter-spacing:1px;
@@ -257,6 +261,7 @@ footer a{color:var(--muted);}
   <div class="sec-sub">点日期展开当天安排 · 点击地点直接唤起 Google 地图导航</div>
   <div id="days"></div>
 
+  <div class="sec-div"></div>
   <h2 class="sec" id="secSpeed">收藏地点速查</h2>
   <div class="sec-sub" id="speedSub">收藏全部在此 · 点击直接导航</div>
   <div id="speedList"></div>
