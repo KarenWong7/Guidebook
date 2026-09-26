@@ -47,7 +47,7 @@ body{
 #topnav a:active{color:var(--accent); border-color:var(--accent);}
 #topnav a.on{background:var(--accent); border-color:var(--accent); color:#fff;}
 [data-theme=dark] #topnav a.on{color:#0f171c;}
-#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secSouv,#secTodos{scroll-margin-top:56px;}
+#nowCard,#secMap,#secFH,#secDays,#secSpeed,#secRev1,#secRev2,#secSouv{scroll-margin-top:56px;}
 
 /* ---------- 头部 ---------- */
 header{padding:28px 16px 8px; text-align:center;}
@@ -190,19 +190,6 @@ ul.rev-list a:active{color:var(--accent);}
 .rev-note{font-size:12px; color:var(--muted); margin-top:6px; padding:6px 10px; background:var(--bg); border-radius:8px; line-height:1.6;}
 .diet-note{font-size:13px; margin-top:6px; padding:8px 10px; background:var(--tint); border-left:3px solid var(--accent); border-radius:8px; color:var(--ink);}
 
-/* ---------- 待办 ---------- */
-ol.todos{list-style:none; counter-reset:td; margin-top:8px;}
-ol.todos li{
-  counter-increment:td; position:relative; padding:9px 10px 9px 44px;
-  border-bottom:1px dashed var(--line); font-size:14px;
-}
-ol.todos li::before{
-  content:counter(td); position:absolute; left:4px; top:9px; width:26px; height:26px;
-  border:1.5px solid var(--accent); color:var(--accent); border-radius:50%;
-  text-align:center; line-height:24px; font-size:13px; font-weight:700;
-}
-ol.todos li .td-day{color:var(--muted); font-size:12px; font-weight:600;}
-
 footer{color:var(--muted); font-size:12px; text-align:center; margin-top:40px;}
 footer a{color:var(--muted);}
 </style>
@@ -219,7 +206,6 @@ footer a{color:var(--muted);}
   <a href="#secRev1">卡什口碑</a>
   <a href="#secRev2">卡帕口碑</a>
   <a href="#secSouv">伴手礼</a>
-  <a href="#secTodos">待办</a>
 </nav>
 
 <header>
@@ -291,26 +277,6 @@ footer a{color:var(--muted);}
   </div>
   <div id="souvList"></div>
   </details>
-</section>
-
-<section id="secTodos">
-  <h2 class="sec">待办清单</h2>
-  <div class="sec-sub">按时间排序 · 办完一项请告知，由我来更新此页</div>
-  <div class="card">
-  <ol class="todos">
-    <li><span class="td-day">出发前</span> 办土耳其电子签（官网 evisa.gov.tr，打印或存手机随身带）</li>
-    <li><span class="td-day">出发前</span> 买好 eSIM 或开通漫游，保存激活说明</li>
-    <li><span class="td-day">出发前</span> 招行 App 开通储蓄卡境外取款功能；带银联储蓄卡 + Visa 信用卡（信用卡只刷卡不取现）；里拉现金到土耳其再取——达拉曼机场 Halkbank 优先、一次取 8000–10000 里拉</li>
-    <li><span class="td-day">出发前</span> 下载 Google 离线地图：卡什、卡帕多奇亚（山谷里常没信号）</li>
-    <li><span class="td-day">出发前</span> 告知帕亚姆酒店 10/8 约 22:00 后入住（☎ <a href="tel:+902428361566">+90 242 836 15 66</a> 或通过预订平台留言）</li>
-    <li><span class="td-day">出发前</span> 订内夫谢希尔机场 ↔ 格雷梅接驳（10/12 去程 15:10 落地后、10/14 19:00 回程；月亮酒店可代订）</li>
-    <li><span class="td-day">10/8 入住</span> 帕亚姆酒店入住先检查房间：厕所有无反味、有无油漆味，不满意当场要求换房</li>
-    <li><span class="td-day">10/9</span> 去卡什车站问清 10/12 早班车时刻 ⚠️ 若只有 6:00 班、车程 2.5–3 小时，对 10:20 航班偏紧——问不到更早班次就当晚预约出租车/拼车</li>
-    <li><span class="td-day">10/12 入住时</span> 跟月亮酒店申请 10/14 延迟退房：官网条款「视房态、可能收费」——入住当天就问，能延到下午最好、可主动提出付费；不行就寄存行李、出门前后用酒店公共洗手间；也可提前 WhatsApp <a href="https://wa.me/905433271850" target="_blank" rel="noopener">+90 543 327 18 50</a> 问</li>
-    <li><span class="td-day">出发前/10/12–13</span> 订 10/13 老爷车日落班：可提前几天线上预订，或到当地在格雷梅巴士站附近旅行社（酒店前台也可）订；按车计费 1–4 人含司机、约 60 欧起（单人即整车价），比价再订；提交酒店资料即算订成、不可无故取消</li>
-    <li><span class="td-day">10/14 晚</span> 22:35 落地伊斯坦布尔后直接过边检进国际区，01:35 前回到登机口附近</li>
-  </ol>
-  </div>
 </section>
 
 <footer>
@@ -735,7 +701,7 @@ applyTheme();setInterval(applyTheme,60000);
 
 /* ================= 导航滚动高亮 ================= */
 (function(){
-  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secSouv','secTodos'];
+  var ids=['nowCard','secMap','secFH','secDays','secSpeed','secRev1','secRev2','secSouv'];
   var nav=document.getElementById('topnav'), links={}, els={};
   ids.forEach(function(id){links[id]=nav.querySelector('a[href="#'+id+'"]'); els[id]=document.getElementById(id);});
   function onScroll(){
